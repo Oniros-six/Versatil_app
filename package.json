@@ -1,0 +1,42 @@
+{
+  "name": "mern",
+  "browser": {
+    "[module-name]": false
+  },
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "webpack": "webpack --mode development --watch",
+    "watchtail": "postcss src/app/dist/tailwind.css --output src/app/dist/styles.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "express": "^4.18.1",
+    "mongoose": "^6.4.4",
+    "morgan": "^1.10.0",
+    "react-router-dom": "^6.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.6",
+    "@babel/preset-env": "^7.18.6",
+    "@babel/preset-react": "^7.18.6",
+    "autoprefixer": "^10.4.7",
+    "babel-loader": "^8.2.5",
+    "css-loader": "^6.7.1",
+    "nodemon": "^2.0.19",
+    "postcss": "^8.4.14",
+    "postcss-cli": "^10.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "style-loader": "^3.3.1",
+    "tailwindcss": "^3.1.6",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0"
+  }
+}
