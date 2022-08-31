@@ -2,9 +2,7 @@ import React from "react";
 
 const TableResumen = (props) => {
     const {listaItems, salario} = props;
-    console.log(salario)
 
-    
     const resumen = () => {
 
         let resumen = {
@@ -98,7 +96,7 @@ const TableResumen = (props) => {
                                 {value}$
                             </td>
                             <td className="table-td costo text-right text-lime-600">
-                                {salario - value}$ 
+                                {value === 0 ? 0 : salario - value}$ 
                             </td>
                         </tr>
                             ))
