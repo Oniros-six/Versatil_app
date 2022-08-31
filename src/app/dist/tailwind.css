@@ -1,0 +1,217 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+    
+    .notFound{
+        @apply text-4xl italic font-black text-rose-900
+    }
+
+    .body{
+        @apply p-6 py-1 bg-[#88b7ba] flex flex-col space-x-0 m-2
+    }
+
+    .nav{
+        @apply flex flex-row justify-around bg-zinc-300 rounded p-2 m-2
+    }
+
+    /* TITULOS */
+    .titulo-h1{
+        @apply text-4xl font-bold font-sans
+    }
+
+    .titulo-h2{
+        @apply text-2xl font-bold
+    }
+
+    .titulo-h4{
+        @apply text-xl font-bold
+    }
+
+    .titulo-h5{
+        @apply text-lg font-bold
+    }
+
+    .titulo-h6{
+        @apply text-md
+    }
+
+    /* BOTONES */
+
+    .boton{
+        @apply rounded bg-cyan-500 shadow-cyan-500/50 shadow-lg text-white py-2 px-4 m-1 hover:ring-2 ring-cyan-500 ;
+    }
+    
+    .boton-danger{
+        @apply rounded bg-red-600 shadow-red-500/50 shadow-lg text-white py-2 px-4 m-1 hover:ring-2 ring-red-500;
+    }
+
+    .boton-warning{
+        @apply rounded bg-yellow-600 shadow-yellow-500/50 shadow-lg text-white py-2 px-4 m-1 hover:ring-2 ring-yellow-500;
+    }
+
+    .boton-success{
+        @apply rounded bg-teal-600 shadow-teal-500/50 shadow-lg text-white py-2 px-4 m-1 hover:ring-2 ring-teal-500;
+    }
+
+    .boton-toggle{
+        @apply rounded bg-sky-500 shadow-sky-500/50 shadow-lg text-white py-2 px-4 m-1 hover:ring-2 ring-sky-500;
+    }
+
+    /* TABLAS */
+
+    .tables-containers{
+        @apply flex flex-row justify-around
+    }
+
+    .decoration{
+        @apply font-bold underline decoration-emerald-500 decoration-double underline-offset-1
+    }
+
+    .table{
+        @apply bg-zinc-200 rounded-md w-1/3 m-2 shadow-emerald-500 shadow-lg
+    }
+
+    .table-notas{
+        @apply w-2/3 bg-zinc-200 rounded-md m-2 shadow-emerald-500 shadow-lg
+    }
+
+    .table-thead{
+        @apply border-solid border-b-2 border-sky-500  
+    }
+    
+    .th{
+        @apply text-xl font-bold text-amber-900
+    }
+
+    .table-tbody{
+        @apply flex flex-col h-36em overflow-auto
+    }
+
+    .table-tr{
+        @apply flex flex-row justify-between border-solid border-b-2 border-sky-300 px-2 
+    }
+
+    .table-td{
+        @apply flex flex-col justify-center text-center
+    }
+
+    .nota{
+        @apply w-4/6 text-left
+    }
+
+    .fecha{
+        @apply w-1/6
+    }
+
+    .accion{
+        @apply w-1/6 flex flex-row items-center justify-center
+    }
+
+    .categoria{
+        @apply w-4/6 items-baseline
+    }
+
+    .accion-cat{
+        @apply w-3/12 flex flex-row items-center justify-center
+    }
+
+    .item{
+        @apply w-6/12 text-left
+    }
+    
+    .costo{
+        @apply w-2/12 
+    }
+    .fecha{
+        @apply w-2/12 
+    }
+    
+    .unidades{
+        @apply w-2/12
+    }
+    
+    .acciones{
+        @apply w-3/12 flex flex-row items-center justify-center
+    }
+
+    /* MODALES */
+    .modal-screen{
+            @apply bg-slate-900/[.5] fixed top-0 left-0 h-screen w-screen 
+    }
+
+    .modal{
+        @apply 
+        flex flex-col
+        bg-zinc-200 rounded-md shadow-blue-600 shadow-md 
+        right-1/2 
+        top-1/4
+        w-96 h-56
+        absolute    
+        translate-x-1/2    
+    }
+
+    .modal-notas{
+        @apply 
+        flex flex-col
+        bg-zinc-200 rounded-md shadow-blue-600 shadow-md 
+        right-1/2 
+        top-1/4
+        w-96 h-4/6
+        absolute    
+        translate-x-1/2    
+    }
+
+    .modal-header{
+        @apply border-solid border-b-2 border-sky-500 flex flex-row justify-between
+    }
+
+    .modal-body{
+        @apply m-2
+    }
+
+    /* FORMULARIOS */
+    .formulario{
+        @apply flex flex-col justify-evenly
+    }
+
+    .form-input{
+        @apply flex flex-col justify-evenly mb-2
+    }
+
+    .textarea{
+        @apply mb-0 resize-none h-52
+    }
+
+    .form-botones{
+        @apply flex flex-row 
+    }
+
+    .label{
+        @apply p-2
+    }
+
+    .input{
+        @apply p-2 rounded border-solid border-2 border-sky-500
+    }
+
+    .scrollbar::-webkit-scrollbar {
+        @apply w-0.5 
+    }
+      
+    .scrollbar::-webkit-scrollbar-track { 
+        @apply bg-white
+      }
+      
+    .scrollbar::-webkit-scrollbar-thumb { 
+        @apply bg-red-500
+    }
+
+    .select {
+        @apply rounded border-solid border-2 border-sky-600 bg-zinc-300 font-bold
+    }
+    .div-select {
+        @apply bg-zinc-200 p-2 pt-1 rounded border-solid border-2 border-sky-600
+    }
+}
