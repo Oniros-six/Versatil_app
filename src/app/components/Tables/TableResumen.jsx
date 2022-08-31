@@ -2,6 +2,8 @@ import React from "react";
 
 const TableResumen = (props) => {
     const {listaItems, salario} = props;
+    console.log(salario)
+
     
     const resumen = () => {
 
@@ -61,9 +63,10 @@ const TableResumen = (props) => {
                 } 
             }
         }
-
     return resumen
     }
+    
+    
 
     return (
             <table className="table w-3/12">

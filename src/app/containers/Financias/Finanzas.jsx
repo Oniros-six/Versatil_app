@@ -67,10 +67,7 @@ const Finanzas = () => {
 
     //VARIABLES
     let actualizar = false
-    const baulaunch = 1500
-    const reintegroInternet = 1000
-    const reintegroGimnasio = 1200
-    const salario = 32160 + baulaunch + reintegroGimnasio + reintegroInternet;
+    const salario = 34330
     const user = "62d882c3e29cfe16c401a85b"
 
     // Hooks
@@ -96,8 +93,6 @@ const Finanzas = () => {
             actualizar = !actualizar
             const res = await axios.get(`http://localhost:4000/api/finanzas/${user}`)
             setListaItems(res.data)
-            console.log(mes)
-
         }
 
         catch (error) {
