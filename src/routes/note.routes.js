@@ -3,9 +3,12 @@ const router = express.Router();
 
 const Note = require('../models/Note');
 
+const noteService = require('../services/note.service')
+const services = new noteService()
+
 router.get('/:id', async(req, res) => {
     try{
-        const notes = await Note.find({category:req.params.id}).sort({status: "ascending"})
+        const notes = await services.getNotes(req)
         res.json(notes)
     }
     catch(err){
@@ -16,17 +19,7 @@ router.get('/:id', async(req, res) => {
 
 router.post('/', async(req, res) =>{
     try{
-        const fecha = new Date()
-        const {note, category, date} = req.body.notasData
-        
-        const newNote = new Note({
-            note:note,
-            date: date === '' ? fecha : date,
-            category:category
-        })
-        newNote.save()
-        
-        
+        await services.postNote(req)
         res.json({status:"Nota agregada"})
     }
     catch(err){
@@ -37,7 +30,7 @@ router.post('/', async(req, res) =>{
 
 router.delete('/:id', async(req, res) => {
     try{
-        const notes = await Note.findByIdAndRemove(req.params.id)
+        await services.deleteNote(req)
         res.json({status: "Nota eliminada"})
     }
     catch(err){
@@ -48,9 +41,7 @@ router.delete('/:id', async(req, res) => {
 
 router.put('/', async(req, res) =>{
     try{
-        await Note.findByIdAndUpdate(req.body.notasData.id, {
-            $set: req.body.notasData
-        })
+        await services.updateNote(req)
         res.json({status:"Nota editada"})
     }
     catch(err){
@@ -59,30 +50,11 @@ router.put('/', async(req, res) =>{
     }
 })
 
-// Get one note
-// router.get('/getOne/:id', async(req, res) => {
-//     try{
-//         const note = await Note.findById(req.params.id)
-//         res.json(note)
-//     }
-//     catch(err){
-//         console.log("Un error a ocurrido ", err)
-//         res.json(err)
-//     }
-// });
-
 // Toggle note
 
 router.put('/toggle/:id', async(req, res) =>{
     try{
-        const note = await Note.findById(req.params.id)
-        const nuevoEstado = !note.status;
-
-        await Note.findByIdAndUpdate(req.params.id, {
-            $set:{ 
-                status: nuevoEstado
-            }
-        })
+        await services.toggleNote(req)
         res.json({status:"Nota editada"})
     }
     catch(err){

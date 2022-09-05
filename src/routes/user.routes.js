@@ -5,9 +5,12 @@ const User = require('../models/user')
 const Category = require('../models/category')
 const Note = require('../models/Note');
 
+const userService = require('../services/user.service')
+const service = new userService
+
 router.get('/', async (req, res) => {
     try{
-        const users = await User.find();
+        const users = await service.getUsers(req)
         res.json(users);
     }
     catch(err){
@@ -18,10 +21,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) =>{
     try{
-        const {user, pass} = req.body;
-        const newUser = new User({user, pass});
-        
-        await newUser.save()
+        await service.postUser(req)
         res.json({status: "Usuario creado"})
     }
     catch(err){
@@ -33,9 +33,7 @@ router.post('/', async (req, res) =>{
 
 router.put('/:id', async(req, res) =>{
     try{
-        const {user, pass} = req.body;
-        const newUser = {user, pass};
-        await User.findByIdAndUpdate(req.params.id, newUser)
+        await service.updateUser(req)
         res.json({status: "Usuario editado"})
     }
 
@@ -47,16 +45,8 @@ router.put('/:id', async(req, res) =>{
 
 router.delete('/:id', async(req, res) => {
     try{
-        const usuario = await User.findById(req.params.id)
-        const categorias = usuario.categories
-        for (let i = 0; i<categorias.length; ++i){
-            let categoria = categorias[i]
-            await Note.deleteMany({category:categoria}) 
-            await Category.findByIdAndRemove(categoria) 
-        }
-        await User.findByIdAndRemove(req.params.id) 
-    
-        res.json("ok")
+        await service.deleteUser(req)
+        res.json("User deleted")
     }
     catch(err){
         console.log("Un error a ocurrido ", err)

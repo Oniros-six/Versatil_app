@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-const Finanza = require('../models/finanza')
+const serviceFinanzas = require('../services/finanzas.service')
+const service = new  serviceFinanzas()
 
 router.get('/:id', async(req, res) =>{
     try{
-        const items = await Finanza.find({user:req.params.id}).sort({createdAt: "descending"})
+        const items = await service.getFinanzas(req)
         res.json(items)
     }
     catch(err){
@@ -16,11 +17,7 @@ router.get('/:id', async(req, res) =>{
 
 router.post('/', async(req, res) =>{
     try{
-        const fecha = new Date()
-        const {item, quantity, cost, subTotal, date, user_id} = req.body.item;
-
-        const newItem = new Finanza({item, quantity, cost, subTotal, date: date === '' ? fecha : date, user_id})
-        newItem.save();
+        await service.postFinanzas(req)
         res.json({status:"Saved"})
     }
     catch(err){
@@ -31,9 +28,7 @@ router.post('/', async(req, res) =>{
 
 router.put('/', async(req, res) =>{
     try{
-        await Finanza.findByIdAndUpdate(req.body._id, {
-        $set: req.body
-        })
+        await service.updateFinanzas(req)
         res.json({status: "Item actualizado"});
     }
     catch(err){
@@ -44,7 +39,7 @@ router.put('/', async(req, res) =>{
 
 router.delete('/:id', async (req, res) =>{
     try{
-        await Finanza.findByIdAndRemove(req.params.id)
+        await service.deleteFinanzas(req)
         res.json({status: "Item eliminado"})
     }
     catch(err){
@@ -55,13 +50,7 @@ router.delete('/:id', async (req, res) =>{
 
 router.put('/toggle/:id', async(req, res) =>{
     try{
-        const item = await Finanza.findById(req.params.id)
-        console.log(item.paid)
-        await Finanza.findByIdAndUpdate(req.params.id, {
-            $set:{ 
-                paid: !item.paid
-            }
-        })
+        await service.toggleFinanzas(req)
         res.json({status:"Item paid"})
     }
     catch(err){
