@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const {logErrors, errorHandler, boomErrorHandler} = require('./middleware/errors.handler')
 const path = require('path');
 
 const app = express();
@@ -15,12 +16,17 @@ app.set('port', process.env.PORT || 4000);
 app.use(morgan('dev'));
 app.use(express.json());
 
+
 // Routes
 app.use('/api/categories/', require('./routes/category.routes'));
 app.use('/api/notes/', require('./routes/note.routes'));
 app.use('/api/users/', require('./routes/user.routes'));
 app.use('/api/finanzas/', require('./routes/finanzas.routes'));
 
+// Middlewares de error
+app.use(logErrors);
+app.use(boomErrorHandler);
+app.use(errorHandler);
 
 // Statics
 app.use(express.static(path.join(__dirname, 'public')));

@@ -13,8 +13,7 @@ router.get('/', async (req, res) => {
         res.json(users);
     }
     catch(err){
-        console.log("Un error a ocurrido ", err)
-        res.json(err)
+        next(err)
     }
 })
 
@@ -24,8 +23,7 @@ router.post('/', async (req, res) =>{
         res.json({status: "Usuario creado"})
     }
     catch(err){
-        console.log("Un error a ocurrido ", err)
-        res.json(err)
+        next(err)
     }
 
 })
@@ -37,8 +35,7 @@ router.put('/:id', async(req, res) =>{
     }
 
     catch(err){
-        console.log("Un error a ocurrido ", err)
-        res.json(err)
+        next(err)
     }
 })
 
@@ -48,8 +45,7 @@ router.delete('/:id', async(req, res) => {
         res.json("User deleted")
     }
     catch(err){
-        console.log("Un error a ocurrido ", err)
-        res.json(err)
+        next(err)
     }
 })
 

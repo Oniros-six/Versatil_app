@@ -8,8 +8,6 @@ const validatorHandler = require('../middleware/validator.handler')
 const {postCategorySchema, getCategorySchema, updateCategorySchema} = require('../schemas/category.schema')
 const {getUserSchema} = require('../schemas/user.schema')
 
-
-
 router.get('/:id',
     validatorHandler(getUserSchema, 'params'),
     async (req, res) =>{
@@ -19,8 +17,7 @@ router.get('/:id',
         res.json(categories)
     }
     catch(err){
-        console.log("Un error a ocurrido ", err)
-        res.json(err)
+        next(err)
     }
 })
 
@@ -32,8 +29,7 @@ router.post('/',
         res.json({status: 201});
     }
     catch(err){
-        console.log("Un error a ocurrido ", err)
-        res.json(err)
+        next(err)
     }
 })
 
@@ -45,8 +41,7 @@ router.put('/:id',
         res.json({status: "Categoria actualizada"});
     }
     catch(err){
-        console.log("Un error a ocurrido ", err)
-        res.json(err)
+        next(err)
     }
 })
 
@@ -58,8 +53,7 @@ router.delete('/:id',
         res.json({status: "Categoria eliminada"})
     }
     catch(err){
-        console.log("Un error a ocurrido ", err)
-        res.json(err)
+        next(err)
     }
 })
 
