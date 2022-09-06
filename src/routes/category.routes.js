@@ -4,7 +4,16 @@ const router = express.Router();
 const categoryService = require('../services/category.service');
 const service = new categoryService()
 
-router.get('/:id', async (req, res) =>{
+const validatorHandler = require('../middleware/validator.handler')
+const {postCategorySchema, getCategorySchema, updateCategorySchema} = require('../schemas/category.schema')
+const {getUserSchema} = require('../schemas/user.schema')
+
+
+
+router.get('/:id',
+    validatorHandler(getUserSchema, 'params'),
+    async (req, res) =>{
+    //El id al que se hace referencia, es al id del usuario
     try{
         const categories = await service.getCategories(req)
         res.json(categories)
@@ -15,7 +24,9 @@ router.get('/:id', async (req, res) =>{
     }
 })
 
-router.post('/', async(req, res) =>{
+router.post('/', 
+    validatorHandler(postCategorySchema, 'body[categoriaData]'),
+    async(req, res) =>{
     try{
         await service.postCategory(req)
         res.json({status: 201});
@@ -26,7 +37,9 @@ router.post('/', async(req, res) =>{
     }
 })
 
-router.put('/:id', async(req, res) => {
+router.put('/:id', 
+    validatorHandler(updateCategorySchema, 'body[categoriaData]'), 
+    async(req, res) => {
     try{
         await service.updateCategory(req)
         res.json({status: "Categoria actualizada"});
@@ -37,7 +50,9 @@ router.put('/:id', async(req, res) => {
     }
 })
 
-router.delete('/:id', async (req, res) =>{
+router.delete('/:id',
+    validatorHandler(getCategorySchema, 'params'),
+    async (req, res) =>{
     try{
         await service.deleteCategory(req)
         res.json({status: "Categoria eliminada"})
