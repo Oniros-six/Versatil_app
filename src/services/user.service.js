@@ -11,6 +11,11 @@ class userService {
         return users
     }
 
+    async getSingleUser (req) {
+        const user = await User.findById(req.params.id);
+        return user
+    }
+
     async postUser (req) {
         const {user, pass} = req.body;
         const newUser = new User({user, pass});

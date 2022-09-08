@@ -1,7 +1,10 @@
 const express = require('express');
 const morgan = require('morgan');
 const {logErrors, errorHandler, boomErrorHandler} = require('./middleware/errors.handler')
+const {checkApiKey} = require('./middleware/auth.handler')
 const path = require('path');
+
+const { config } = require('./config/config')
 
 const app = express();
 
@@ -10,7 +13,7 @@ const {Mongoose} = require('./database');
 
 // Settings
 
-app.set('port', process.env.PORT || 4000);
+app.set('port', process.env.PORT || config.port);
 
 // Middleware
 app.use(morgan('dev'));
@@ -22,6 +25,10 @@ app.use('/api/categories/', require('./routes/category.routes'));
 app.use('/api/notes/', require('./routes/note.routes'));
 app.use('/api/users/', require('./routes/user.routes'));
 app.use('/api/finanzas/', require('./routes/finanzas.routes'));
+
+app.get('/test', checkApiKey,(req, res) => {
+    res.send('funcionando')
+})
 
 // Middlewares de error
 app.use(logErrors);

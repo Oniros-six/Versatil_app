@@ -17,7 +17,21 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.post('/', async (req, res) =>{
+router.get('/:id',
+    validatorHandler(getUserSchema, 'params'),
+    async (req, res) => {
+    try{
+        const user = await service.getSingleUser(req)
+        res.json(user);
+    }
+    catch(err){
+        next(err)
+    }
+})
+
+router.post('/',
+    validatorHandler(postUserSchema, 'params'),
+    async (req, res) =>{
     try{
         await service.postUser(req)
         res.json({status: "Usuario creado"})
@@ -28,7 +42,9 @@ router.post('/', async (req, res) =>{
 
 })
 
-router.put('/:id', async(req, res) =>{
+router.put('/:id',
+    validatorHandler(updateUserSchema, 'params'),
+    async(req, res) =>{
     try{
         await service.updateUser(req)
         res.json({status: "Usuario editado"})
@@ -39,7 +55,9 @@ router.put('/:id', async(req, res) =>{
     }
 })
 
-router.delete('/:id', async(req, res) => {
+router.delete('/:id', 
+    validatorHandler(getUserSchema, 'params'),
+    async(req, res) => {
     try{
         await service.deleteUser(req)
         res.json("User deleted")
