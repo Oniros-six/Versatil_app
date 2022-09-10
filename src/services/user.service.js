@@ -1,4 +1,5 @@
 const boom = require('@hapi/boom')
+const bc = require('bcrypt');
 
 const User = require('../models/user')
 const Category = require('../models/category')
@@ -18,8 +19,11 @@ class userService {
 
     async postUser (req) {
         const {user, pass} = req.body;
-        const newUser = new User({user, pass});
-        
+        const hashGen = await bc.hash(pass, 10);
+        const newUser = new User({user, pass: ''});
+        if (newUser.pass === '') {
+            newUser.pass = hashGen
+        }
         await newUser.save()
     }
 

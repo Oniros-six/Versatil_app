@@ -30,7 +30,7 @@ router.get('/:id',
 })
 
 router.post('/',
-    validatorHandler(postUserSchema, 'params'),
+    validatorHandler(postUserSchema, 'req'),
     async (req, res) =>{
     try{
         await service.postUser(req)
