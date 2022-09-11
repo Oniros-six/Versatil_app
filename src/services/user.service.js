@@ -17,14 +17,25 @@ class userService {
         return user
     }
 
+    async getUserByName (dato) {
+        const user = await User.findOne({user: dato})
+        return user
+    }
+    
     async postUser (req) {
         const {user, pass} = req.body;
+
+        const userInData = await User.findOne({user: user})
         const hashGen = await bc.hash(pass, 10);
         const newUser = new User({user, pass: ''});
-        if (newUser.pass === '') {
+        
+        if (newUser.pass === '' && (userInData === null)) {
             newUser.pass = hashGen
+            await newUser.save()
+        } else {
+            throw boom.notAcceptable('User already exists! Try a diferent username')
         }
-        await newUser.save()
+
     }
 
     async deleteUser(req) {
