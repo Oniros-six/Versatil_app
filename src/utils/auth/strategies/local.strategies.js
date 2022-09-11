@@ -18,9 +18,8 @@ const LocalStrategy = new Strategy({usernameField: 'username',
         if (!isMatch){
             done(boom.unauthorized(), false)
         }
-        const usuario = {...user }
-        console.log(usuario)
         done(null, user)
+
     } catch (error) {
         done(error, false)
     }

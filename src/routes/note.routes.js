@@ -6,10 +6,13 @@ const services = new noteService()
 
 const validatorHandler = require('../middleware/validator.handler');
 const {getCategorySchema} = require('../schemas/category.schema')
-const {postNoteSchema, updateNoteSchema, deleteNoteSchema} = require('../schemas/note.schema')
+const {postNoteSchema, updateNoteSchema, deleteNoteSchema} = require('../schemas/note.schema');
+const passport = require('passport');
 
 
 router.get('/:id', 
+    // Lo dejo comentado porque funciona, pero sin un login apropiado me quedo sin usar la app XD
+    // passport.authenticate('jwt', {session: false}),
     validatorHandler(getCategorySchema, 'params'),
     async(req, res) => {
     try{
