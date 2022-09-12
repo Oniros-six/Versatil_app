@@ -8,7 +8,7 @@ const Navbar = (props) => {
         <>
             <div className="nav">
                 <h2 className="titulo-h2">
-                    <Link to="#">Cerrar sesion</Link>
+                    <Link to="/login">login</Link>
                 </h2>
                 
                 <h1 className="titulo-h1">

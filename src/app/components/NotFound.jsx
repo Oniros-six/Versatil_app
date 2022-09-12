@@ -4,7 +4,9 @@ const NotFound = () => {
 
     return(
         <>
-            <h1 className="notFound">NotFound-404</h1>
+            <div className="notFoundContainer">
+                <h1 className="notFound">Not Found - 404</h1>
+            </div>
         </>
     )
        

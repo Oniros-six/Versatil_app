@@ -14,5 +14,13 @@ router.post('/login',
             next(error)
         }
     })
+router.get('/login',
+    async (req, res, next) => {
+        try {
+            res.statusCode(200)
+        } catch (error) {
+            next(error)
+        }
+    })
 
 module.exports = router

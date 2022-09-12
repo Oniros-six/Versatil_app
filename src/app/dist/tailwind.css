@@ -4,8 +4,13 @@
 
 @layer components{
     
+    .notFoundContainer {
+        @apply  bg-slate-300 flex flex-row justify-center w-80
+                shadow-cyan-500/50 shadow-lg rounded py-2 px-3 m-1
+                  border-solid border-2 border-sky-500
+    }
     .notFound{
-        @apply text-4xl italic font-black text-rose-900
+        @apply text-4xl italic font-black text-rose-900 
     }
 
     .body{

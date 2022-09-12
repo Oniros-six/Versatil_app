@@ -1,11 +1,12 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import Provider from '../Provider'
 
 
 import NotasYCategorias from '../containers/NotasYCategorias/NotasYCategorias'
 import Finanzas from "../containers/Financias/Finanzas";
 import NotFound from '../components/NotFound'
+import Sesion from "../containers/Sesion/Sesion";
 
 
 class App extends React.Component {
@@ -13,13 +14,14 @@ class App extends React.Component {
         return (
             <>
                 <Provider>
-                <BrowserRouter>
+                <HashRouter>
                         <Routes>
                             <Route exact path="/" element={<NotasYCategorias/>} />
                             <Route exact path="/finanzas" element={<Finanzas/>} />
-                            <Route element={<NotFound/>} />
+                            <Route exact path="/login" element={<Sesion/>} />
+                            <Route path="*" element={<NotFound/>} />
                         </Routes>
-                    </BrowserRouter>
+                    </HashRouter>
                 </Provider>
             </>
         )
