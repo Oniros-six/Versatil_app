@@ -23,14 +23,14 @@ class authService {
 
     async login(req) {
         const user = req.user
-            const payload = {
-                sub: user.id
-            }
-            const token = jwt.sign(payload, config.secreto)
-            // const token = jwt.sign(payload, config.secreto, config.jwtConfig)
+        const payload = {
+            sub: user.id
+        }
+        const token = jwt.sign(payload, config.secreto)
+        // const token = jwt.sign(payload, config.secreto, config.jwtConfig)
 
-            return {user, token}
-    }
+        return {user, token}
+}
 
 }
 

@@ -9,13 +9,7 @@ router.post('/login',
     passport.authenticate('local', { session: false }),
     async (req, res, next) => {
         try {
-            const respuesta = await service.login(req)
-
-            res.json({
-                user: respuesta.user,
-                token: respuesta.token
-            })
-
+            res.json(service.login(req))
         } catch (error) {
             next(error)
         }
