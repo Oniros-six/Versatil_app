@@ -58,7 +58,7 @@ const Categorias = () => {
 
     const deleteCategoria = async (id) => {
         try {
-            await axios.delete(`http://localhost:4000/api/categories/${id}`);
+            await axios.delete(`api/categories/${id}`);
             getCategorias()
         } catch (error) {
             console.log(error);
@@ -68,7 +68,7 @@ const Categorias = () => {
     const addCategoria = async () => {
         try {
             categoriaData.user = user
-            const data = await axios.post(`http://localhost:4000/api/categories/`, { categoriaData });
+            const data = await axios.post(`api/categories/`, { categoriaData });
             getCategorias()
         } catch (error) {
             console.log(error);
@@ -84,7 +84,7 @@ const Categorias = () => {
     const editarCategoria = async () => {
         try {
             console.log(categoriaData)
-            const data = await axios.put(`http://localhost:4000/api/categories/${categoriaData.id}`, { categoriaData });
+            const data = await axios.put(`api/categories/${categoriaData.id}`, { categoriaData });
             getCategorias()
 
         } catch (error) {

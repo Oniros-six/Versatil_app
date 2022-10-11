@@ -91,7 +91,7 @@ const Finanzas = () => {
     const getItems = async () => {
         try {
             actualizar = !actualizar
-            const res = await axios.get(`http://localhost:4000/api/finanzas/${user}`)
+            const res = await axios.get(`api/finanzas/${user}`)
             setListaItems(res.data)
         }
 
@@ -111,7 +111,7 @@ const Finanzas = () => {
         }
 
         try {
-            const res = await axios.post(`http://localhost:4000/api/finanzas/`, { item })
+            const res = await axios.post(`api/finanzas/`, { item })
             getItems()
         } catch (error) {
             console.log(error)
@@ -127,7 +127,7 @@ const Finanzas = () => {
     const putItem = async () => {
         try {
             setNewItem(newItem.subTotal = newItem.quantity * newItem.cost)
-            await axios.put(`http://localhost:4000/api/finanzas/`, newItem)
+            await axios.put(`api/finanzas/`, newItem)
             getItems()
         } catch (error) {
             console.log(error)
@@ -144,7 +144,7 @@ const Finanzas = () => {
 
     const deleteItem = async (id) => {
         try {
-            await axios.delete(`http://localhost:4000/api/finanzas/${id}`)
+            await axios.delete(`api/finanzas/${id}`)
             getItems()
         } catch (error) {
             console.log(error)
@@ -153,7 +153,7 @@ const Finanzas = () => {
 
     const togglePaid = async (id) => {
         try {
-            await axios.put(`http://localhost:4000/api/finanzas/toggle/${id}`)
+            await axios.put(`api/finanzas/toggle/${id}`)
             getItems()
 
         } catch (error) {

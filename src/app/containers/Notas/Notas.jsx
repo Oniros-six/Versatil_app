@@ -41,7 +41,7 @@ const Notas = ({cat}) => {
     // ABML
     const getNotas = async () => {
         try {
-            const notas = await axios.get(`http://localhost:4000/api/notes/${cat}`);
+            const notas = await axios.get(`api/notes/${cat}`);
             setListaNotas(notas.data);
             } catch (error) {
             console.log(error);
@@ -57,7 +57,7 @@ const Notas = ({cat}) => {
 
     const deleteNota = async (id) => {
         try {
-            await axios.delete(`http://localhost:4000/api/notes/${id}`);
+            await axios.delete(`api/notes/${id}`);
             getNotas()
         } catch (error) {
             console.log(error);
@@ -67,7 +67,7 @@ const Notas = ({cat}) => {
     const addNota = async () => {
         notasData.category = cat
         try {
-            const data = await axios.post(`http://localhost:4000/api/notes/`, { notasData });
+            const data = await axios.post(`api/notes/`, { notasData });
             getNotas()
             
         } catch (error) {
@@ -78,7 +78,7 @@ const Notas = ({cat}) => {
 
     const toggleNota = async (id) => {
         try {
-            await axios.put(`http://localhost:4000/api/notes/toggle/${id}`);
+            await axios.put(`api/notes/toggle/${id}`);
             getNotas()
 
         } catch (error) {
@@ -94,7 +94,7 @@ const Notas = ({cat}) => {
 
     const editarNota = async () => {
         try {
-            await axios.put(`http://localhost:4000/api/notes/`, { notasData });
+            await axios.put(`api/notes/`, { notasData });
             getNotas()
 
         } catch (error) {
