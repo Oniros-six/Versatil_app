@@ -4,6 +4,7 @@ const passport = require('passport')
 const {logErrors, errorHandler, boomErrorHandler} = require('./middleware/errors.handler')
 const {checkApiKey} = require('./middleware/auth.handler')
 const path = require('path');
+const cors = require('cors')
 
 const { config } = require('./config/config')
 
@@ -15,6 +16,7 @@ const {Mongoose} = require('./database');
 
 // Settings
 app.set('port', process.env.PORT || config.port);
+app.use(cors())
 
 // Middleware
 require('./utils/auth')
