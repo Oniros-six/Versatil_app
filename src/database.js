@@ -4,7 +4,7 @@ const { config } = require('./config/config')
 const URI = config.dbUrl;
 
 mongoose.connect(URI)
-        .then(db => console.log('DB is connected to'))
+        .then(db => console.log('DB is connected'))
         .catch(err => console.error(err));
 
 module.exports = mongoose;
