@@ -32,7 +32,7 @@ const Table = (props) => {
                     {lista.length !== 0 ? children : 
                     <tr className="flex flex-row justify-center">
                         <td>
-                            <h4 className="titulo-h4">
+                            <h4 className="titulo-h3">
                             {zona == "nota" ? 
                             "No tienes notas en esta categoria"
                             :

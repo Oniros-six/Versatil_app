@@ -4,42 +4,56 @@
 
 @layer components{
     
+    /* NOT FOUND */
     .notFoundContainer {
-        @apply  bg-slate-300 flex flex-row justify-center w-80
-                shadow-cyan-500/50 shadow-lg rounded py-2 px-3 m-1
-                  border-solid border-2 border-sky-500
+        @apply  flex flex-row justify-center 
+                sm:w-80
+                bg-slate-300 shadow-cyan-500/50 shadow-lg rounded 
+                py-2 px-3 m-1
+                border-solid border-2 border-sky-500
     }
+    
     .notFound{
-        @apply text-4xl italic font-black text-rose-900 
+        @apply  italic font-black text-rose-900
+                sm:text-2xl lg:text-4xl 
     }
 
+    /* GENERAL */
     .body{
-        @apply p-6 py-1 bg-[#88b7ba] flex flex-col space-x-0 m-2
+        @apply  bg-[#88b7ba] flex flex-col space-x-0 
+        sm:m-1 sm:p-1 sm:py-1
+        md:m-2 md:p-6 md:py-1
+        lg:m-2 lg:p-6 lg:py-1
     }
 
     .nav{
-        @apply flex flex-row justify-around bg-zinc-300 rounded p-2 m-2
+        @apply flex flex-row justify-around bg-zinc-300 rounded 
+            p-2 
+            m-1
+            sm:p-1 sm:m-0
+
     }
 
     /* TITULOS */
+
     .titulo-h1{
-        @apply text-4xl font-bold font-sans
+        @apply font-bold font-sans
+        text-xl sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl
     }
 
     .titulo-h2{
-        @apply text-2xl font-bold
+        @apply font-bold
+        text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl
+
+    }
+
+    .titulo-h3{
+        @apply text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold
     }
 
     .titulo-h4{
-        @apply text-xl font-bold
-    }
+        @apply text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-bold
 
-    .titulo-h5{
-        @apply text-lg font-bold
-    }
-
-    .titulo-h6{
-        @apply text-md
     }
 
     /* BOTONES */
@@ -142,6 +156,7 @@
     }
 
     /* MODALES */
+
     .modal-screen{
             @apply bg-slate-900/[.5] fixed top-0 left-0 h-screen w-screen 
     }
@@ -175,12 +190,12 @@
     .modal-body{
         @apply m-2
     }
-
+    
     /* FORMULARIOS */
+    
     .formulario{
         @apply flex flex-col justify-evenly
     }
-
     .form-input{
         @apply flex flex-col justify-evenly mb-2
     }
@@ -216,7 +231,26 @@
     .select {
         @apply rounded border-solid border-2 border-sky-600 bg-zinc-300 font-bold
     }
+
     .div-select {
         @apply bg-zinc-200 p-2 pt-1 rounded border-solid border-2 border-sky-600
     }
+
+
+    /* LOGIN/SIGNUP FORMS */
+    
+    .container {
+        @apply flex flex-row justify-center
+        sm:w-32
+    }
+
+    .form-container {
+        @apply flex flex-row justify-center bg-purple-400
+                w-52 sm:w-64 md:w-72 lg:w-80 xl:w-96
+    }
+
+    .form-input-container {
+        @apply flex flex-col justify-center
+    }
+
 }

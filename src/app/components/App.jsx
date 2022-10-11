@@ -4,7 +4,7 @@ import Provider from '../Provider'
 
 
 import NotasYCategorias from '../containers/NotasYCategorias/NotasYCategorias'
-import Finanzas from "../containers/Financias/Finanzas";
+import Finanzas from "../containers/Finanzas/Finanzas";
 import NotFound from '../components/NotFound'
 import Sesion from "../containers/Sesion/Sesion";
 

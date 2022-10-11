@@ -67,7 +67,7 @@ const Finanzas = () => {
 
     //VARIABLES
     let actualizar = false
-    const salario = 34330
+    const salario = 33096
     const user = "62d882c3e29cfe16c401a85b"
 
     // Hooks
@@ -221,7 +221,7 @@ const Finanzas = () => {
                 />
                  <div>
                     <div className="div-select">
-                        <h3 className="titulo-h5  text-center ">MES</h3>
+                        <h3 className="titulo-h4  text-center ">MES</h3>
                         <select  onChange={changeMonth} className="select" >
                             {meses.map(mes => (
                                 <option className="bg-zinc-300  font-bold" key={mes.key} value={mes.value}>

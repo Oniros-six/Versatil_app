@@ -27,7 +27,7 @@ const TableFinanzas = (props) => {
                 {listaItems === undefined ?
                         <tr className="flex flex-row justify-center">
                             <td>
-                                <h4 className="titulo-h4">Aún no tienes gastos 🤯</h4>
+                                <h4 className="titulo-h3">Aún no tienes gastos 🤯</h4>
                             </td>
                         </tr>
                         :

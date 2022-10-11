@@ -1,17 +1,18 @@
 import React, { useRef } from "react";
-// import Boton from "../../components/Buttons/Boton";
+import Boton from "../../components/Buttons/Boton";
 
 const FormSesion = (props) => {
     const formRef = useRef(null);
     const { userData,
-            isLogin,
-            handleChanges,
-            validated,
-            handleSubmit } = props;
+        handleChanges,
+        handleSubmit } = props;
     return (
         // noValidate validated={validated}
-        <form  ref={formRef}>
-            <div>
+        <div className="form-container">
+            
+        <form ref={formRef}>
+
+            <div className="form-input-container">
                 <label>Usuario</label>
                 <input
                     type="text"
@@ -22,7 +23,7 @@ const FormSesion = (props) => {
                     onChange={handleChanges} />
             </div>
 
-            <form>
+            <div className="form-input-container">
                 <label>Contraseña</label>
                 <input
                     type="password"
@@ -32,15 +33,17 @@ const FormSesion = (props) => {
                     name='password'
                     onChange={handleChanges}
                 />
-            </form>
+            </div>
 
             <div>
                 <input type="checkbox" label="Recuerdame" />
             </div>
 
-            <Boton clases="boton" nombre="Enviar" onClick={(e) => handleSubmit(e, formRef.current, isLogin)} variant="success" />
 
+
+            <Boton clases="boton" nombre="Enviar" onClick={(e) => handleSubmit(e, formRef.current, isLogin)} variant="success" />
         </form>
+    </div>
     );
 }
 

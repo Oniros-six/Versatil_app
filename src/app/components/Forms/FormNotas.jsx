@@ -13,7 +13,7 @@ const FormNotas = (props) => {
         <form className="formulario"  ref={formRef}>
             <div className="form-input">
                 <label className="label">
-                    <h5 className="titulo-h5">
+                    <h5 className="titulo-h4">
                         Nota
                     </h5>
                 </label>
@@ -32,7 +32,7 @@ const FormNotas = (props) => {
 
             <div className="form-input">
                 <label className="label">
-                    <h5 className="titulo-h5">
+                    <h5 className="titulo-h4">
                         Fecha
                     </h5>
                 </label>

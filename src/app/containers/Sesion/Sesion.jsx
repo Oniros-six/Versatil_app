@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
+import Navbar from "../../components/Navbar/Navbar";
 import axios from 'axios'
 
 //Componentes
-    // import FormSesion from "../../components/Forms/FormSesion";
+import FormSesion from "../../components/Forms/FormSesion";
 
 let userInit = {
     user: "",
@@ -48,7 +49,14 @@ const Sesion = () => {
 
     return (
         <>
-            <h2>El login es aqui</h2>
+            <Navbar zona={"Incio de sesión"} />
+            <div className="container">
+                <FormSesion
+                    userData={userData}
+                >
+                </FormSesion>
+            </div>
+
         </>
     )
 }

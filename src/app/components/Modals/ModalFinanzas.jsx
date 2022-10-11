@@ -15,7 +15,7 @@ const ModalFinanzas = (props) => {
                 <div className="modal-screen" onKeyDown={(event) =>handleKeyDown(event)}>
                     <div className="modal-notas">
                         <div className="modal-header">
-                            <h4 className="titulo-h4 p-2">
+                            <h4 className="titulo-h3 p-2">
                                 { isEdit ? 'Editar': 'Agregar' } item
                             </h4>
                             <Boton clases="boton-danger rounded-full py-2 px-4 m-1 text-md" onClick={onHide} icon="fa-solid fa-xmark"/>

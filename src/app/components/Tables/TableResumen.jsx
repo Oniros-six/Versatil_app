@@ -120,8 +120,8 @@ const TableResumen = (props) => {
             <thead className="table-thead">
                 <tr className="table-tr">
                     <th className="table-td costo text-left">Mes</th>
-                    <th className="table-td text-right costo">Gasto</th>
-                    <th className="table-td text-right costo">Resto</th>
+                    <th className="table-td text-right costo">Gastos</th>
+                    <th className="table-td text-right costo">Ahorro</th>
                 </tr>
             </thead>
 
@@ -129,7 +129,7 @@ const TableResumen = (props) => {
                 {listaItems === undefined ?
                     <tr className="flex flex-row justify-center">
                         <td>
-                            <h4 className="titulo-h4">🤯</h4>
+                            <h4 className="titulo-h3">🤯</h4>
                         </td>
                     </tr>
 

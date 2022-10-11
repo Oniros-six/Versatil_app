@@ -10,7 +10,7 @@ const FormCategoria = (props) => {
         <form className="formulario"  ref={formRef}>
             <div className="form-input">
                 <label className="label">
-                    <h5 className="titulo-h5">
+                    <h5 className="titulo-h4">
                         Nombre
                     </h5>
                 </label>
