@@ -41,7 +41,7 @@ const Categorias = () => {
 
     const getCategorias = async () => {
         try {
-            const categorias = await axios.get(`/api/categories/${user}`);
+            const categorias = await axios.get(`https://mi-app-leandro.herokuapp.com/api/categories/${user}`);
             setListaCategorias(categorias.data);
             setIdCat(categorias.data[0]._id)      
         } catch (error) {
