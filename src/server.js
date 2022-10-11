@@ -44,6 +44,6 @@ app.use(errorHandler);
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Start server
-app.listen(app.get('port'), () => {
+app.listen(process.env.PORT, () => {
     console.log(`The server is listening on the port ${app.get('port')}`)
 })
