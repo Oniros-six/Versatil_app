@@ -83,7 +83,6 @@ const Categorias = () => {
 
     const editarCategoria = async () => {
         try {
-            console.log(categoriaData)
             const data = await axios.put(`api/categories/${categoriaData.id}`, { categoriaData });
             getCategorias()
 

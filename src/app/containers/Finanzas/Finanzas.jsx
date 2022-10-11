@@ -10,9 +10,8 @@ const Finanzas = () => {
 
     let itemInit = {
         item: '',
-        quantity: '',
-        cost: '',
         subTotal: '',
+        description: '',
         date: '',
         user_id: ''
     };
@@ -103,9 +102,8 @@ const Finanzas = () => {
     const postItem = async () => {
         const item = {
             item: newItem.item,
-            quantity: newItem.quantity,
-            cost: newItem.cost,
-            subTotal: (newItem.quantity * newItem.cost),
+            subTotal: newItem.subTotal,
+            description: newItem.description,
             date: newItem.date,
             user_id: user
         }
@@ -126,7 +124,6 @@ const Finanzas = () => {
 
     const putItem = async () => {
         try {
-            setNewItem(newItem.subTotal = newItem.quantity * newItem.cost)
             await axios.put(`api/finanzas/`, newItem)
             getItems()
         } catch (error) {
@@ -173,11 +170,10 @@ const Finanzas = () => {
             setNewItem({
                 _id: editData._id,
                 item: editData.item,
+                description: editData.description,
                 date: editData.date,
                 paid: editData.paid,
-                quantity: editData.quantity,
-                cost: editData.cost,
-                subTotal: editData.cost * editData.quantity
+                subTotal: editData.subTotal
             });
         }
         setOpenModal(true);

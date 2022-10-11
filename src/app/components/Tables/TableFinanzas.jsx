@@ -14,10 +14,9 @@ const TableFinanzas = (props) => {
                     </tr>
                     <tr className="table-tr">
                         <th className="table-td item">Item</th>
-                        <th className="table-td fecha">Fecha</th>
-                        <th className="table-td costo text-right">Costo</th>
-                        <th className="table-td unidades text-right">Unidades</th>
                         <th className="table-td unidades text-right">SubTotal</th>
+                        <th className="table-td unidades text-right">Description</th>
+                        <th className="table-td fecha">Fecha</th>
                         <th className="table-td acciones ml-2">Acciones</th>
                     </tr>
                 </thead>
@@ -33,22 +32,20 @@ const TableFinanzas = (props) => {
                         :
 
                         Object.entries(listaItems).filter((item) => item[1].date.slice(5,7) === month).map(([key, value]) => (
-
+                            
                             <tr key={value._id} className={`${value.paid !== false ? "table-tr hover:bg-slate-300 line-through text-[#a9a9a9]" : "table-tr hover:bg-slate-300"}`} >
                                 <td className="table-td item">
                                     {value.item}
                                 </td>
-                                <td className="table-td fecha">
-                                    {value.date.slice(5,10)}
-                                </td>
-                                <td className="table-td costo text-right">
-                                    {value.cost}$
-                                </td>   
-                                <td className="table-td unidades text-right">
-                                    {value.quantity}
-                                </td>
+                        
                                 <td className="table-td unidades text-right">
                                     {value.subTotal}$
+                                </td>
+                                <td className="table-td unidades text-right">
+                                    {value.description}
+                                </td>
+                                <td className="table-td fecha">
+                                    {value.date.slice(5,10)}
                                 </td>
                                 <td className="table-td acciones ml-4">
                                     <Boton  clases={`${value.paid !== false ? 'boton-success' : 'boton-toggle'}`} 

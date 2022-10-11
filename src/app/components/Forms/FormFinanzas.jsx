@@ -36,39 +36,41 @@ const FormFinanzas = (props) => {
             <div className="form-input">
                 <label className="label">
                     <h5 className="titulo-h4">
-                        Cantidad
+                        Sub total
                     </h5>
                 </label>
 
                 <input
                     className="input"
-                    placeholder="Cuanto llevas?"
+                    placeholder="Cuanto vale todo?"
                     type="number"
                     min={1}
                     required={true}
-                    value={newItem.quantity}
-                    name='quantity'
+                    value={newItem.subTotal}
+                    name='subTotal'
                     onChange={handleChanges}
                 />
             </div>
 
+
             <div className="form-input">
                 <label className="label">
                     <h5 className="titulo-h4">
-                        Costo
+                        Description
                     </h5>
                 </label>
 
                 <input
                     className="input"
-                    placeholder="Cuanto vale?"
-                    type="number"
-                    min={1}
-                    required={true}
-                    value={newItem.cost}
-                    name='cost'
+                    type="text"
+                    autoCapitalize="true"
+                    placeholder="Opcional"
+                    required={false}
+                    value={normalizar(newItem.description)}
+                    name='description'
                     onChange={handleChanges}
                 />
+
             </div>
 
             <div className="form-input">
