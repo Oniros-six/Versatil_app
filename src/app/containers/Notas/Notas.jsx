@@ -27,7 +27,6 @@ const Notas = ({cat}) => {
 
     useEffect(() => {
         if (typeof(cat) !== typeof("")) {
-            console.log ('Loading...');
           } else {
             getNotas(); 
           }

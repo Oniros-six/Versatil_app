@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import {AppContext} from '../../Provider'
+import Boton from "../Buttons/Boton";
+
 
 const TableResumen = (props) => {
-    const { listaItems, salario } = props;
+    const { listaItems, salario} = props;
+    const [month, setMonth] = useContext(AppContext);
 
     const resumen = () => {
 
@@ -17,7 +21,7 @@ const TableResumen = (props) => {
             Septiembre: 0,
             Octubre: 0,
             Noviembre: 0,
-            Diciebre: 0
+            Diciembre: 0
         }
         if (listaItems.length !== 0) {
             for (let i = 0; i < listaItems.length; i++) {
@@ -102,9 +106,9 @@ const TableResumen = (props) => {
 
                 } else if (month === "12") {
                     if (!listaItems[i].paid) {
-                        resumen.Diciebre += 0
+                        resumen.Diciembre += 0
                     } else {
-                        resumen.Diciebre += listaItems[i].subTotal
+                        resumen.Diciembre += listaItems[i].subTotal
                     }
 
                 }
@@ -112,8 +116,6 @@ const TableResumen = (props) => {
         }
         return resumen
     }
-
-
 
     return (
         <table className="table w-3/12">
@@ -138,8 +140,8 @@ const TableResumen = (props) => {
                     Object.entries(resumen()).map(([key, value]) => (
 
                         <tr key={key} className="table-tr hover:bg-slate-300">
-                            <td className="table-td costo text-left">
-                                {key}
+                            <td className="table-td costo">
+                                <Boton clases = "text-left" nombre={key} onClick={() => setMonth(key)}/>
                             </td>
                             <td className="table-td costo text-right text-lime-600">
                                 {value}$

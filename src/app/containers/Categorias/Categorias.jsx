@@ -33,7 +33,6 @@ const Categorias = () => {
     const user = "631ba9569f4fc6d8c5dc8171";
     const normalizar = (name) => {
         const nombre = name.trim().charAt(0).toUpperCase() + name.slice(1);
-        console.log(nombre)
         return nombre;
     }
     // ---------------------------------------- CATEGORIA ----------------------------------------
@@ -43,7 +42,7 @@ const Categorias = () => {
         try {
             const categorias = await axios.get(`api/categories/${user}`);
             setListaCategorias(categorias.data);
-            setIdCat(categorias.data[0]._id)      
+            setIdCat(categorias.data[0]._id)
         } catch (error) {
             console.log(error);
         }

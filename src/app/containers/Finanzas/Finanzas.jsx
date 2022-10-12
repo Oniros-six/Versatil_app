@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import {AppContext} from '../../Provider'
 import axios from 'axios'
 import Navbar from "../../components/Navbar/Navbar";
 import TableFinanzas from "../../components/Tables/TableFinanzas"
@@ -7,6 +8,7 @@ import ModalFinanzas from "../../components/Modals/ModalFinanzas";
 import FormFinanzas from "../../components/Forms/FormFinanzas";
 
 const Finanzas = () => {
+    const [month, setMonth] = useContext(AppContext);
 
     let itemInit = {
         item: '',
@@ -16,53 +18,17 @@ const Finanzas = () => {
         user_id: ''
     };
 
-    let date = new Date();
-    let month = String(String(date.getMonth() + 1).padStart(2, '0'))
+    let date = new Date()
 
-    const theMonth = (mes) => {
-        switch (mes) {
-            case '01':
-                return "Enero"
-            case '02':
-                return "Febrero"
-            case '03':
-                return "Marzo"
-            case '04':
-                return "Abril"
-            case '05':
-                return "Mayo"
-            case '06':
-                return "Junio"
-            case '07':
-                return "Julio"
-            case '08':
-                return "Agosto"
-            case '09':
-                return "Septiembre"
-            case '10':
-                return "Octubre"
-            case '11':
-                return "Noviembre"
-            case '12':
-                return "Diciembre"
-        }
+    const getMonthName = (number) => {
+        return new Date('1999-' + number + '-15').toLocaleString('es-ES', { month: 'long' })
     }
-    const meses = [
-        {key: 1, value: month, text: theMonth(month) },
-        {key: 2, value: '01', text: 'Enero' },
-        {key: 3, value: '02', text: 'Febrero' },
-        {key: 4, value: '03', text: 'Marzo' },
-        {key: 5, value: '04', text: 'Abril' },
-        {key: 6, value: '05', text: 'Mayo' },
-        {key: 7, value: '06', text: 'Junio' },
-        {key: 8, value: '07', text: 'Julio' },
-        {key: 9, value: '08', text: 'Agosto' },
-        {key: 10, value: '09', text: 'Septiembre' },
-        {key: 11, value: '10', text: 'Octubre' },
-        {key: 12, value: '11', text: 'Noviembre' },
-        {key: 13, value: '12', text: 'Diciembre' }
-    ];
 
+    const capitalizeFirstLetter = (str) => {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    let mesActual = capitalizeFirstLetter(getMonthName(date.getMonth() + 1))
 
     //VARIABLES
     let actualizar = false
@@ -70,10 +36,10 @@ const Finanzas = () => {
     const user = "62d882c3e29cfe16c401a85b"
 
     // Hooks
+    const [mes, setMes] = useState('')
     const [listaItems, setListaItems] = useState([]);
     const [newItem, setNewItem] = useState(itemInit)
     const [openModal, setOpenModal] = useState(false)
-    const [mes, setMes] = useState(meses[0].value);
     const [isEdit, setIsEdit] = useState(false)
 
     useEffect(() => {
@@ -89,6 +55,9 @@ const Finanzas = () => {
 
     const getItems = async () => {
         try {
+            if (mes === '') {
+                setMes(mesActual)
+            }
             actualizar = !actualizar
             const res = await axios.get(`api/finanzas/${user}`)
             setListaItems(res.data)
@@ -158,8 +127,8 @@ const Finanzas = () => {
         }
     }
 
-    const changeMonth = event => {
-        setMes(event.target.value);
+    const changeMonth = (mes) => {
+        setMes(mes)
         getItems()
     };
 
@@ -196,6 +165,7 @@ const Finanzas = () => {
         if (form.checkValidity()) isEdit ? putItem() : postItem();
     };
 
+    
 
     return (
         <>
@@ -203,8 +173,9 @@ const Finanzas = () => {
             <div className="tables-containers">
 
                 <TableFinanzas
-                    changeMonth={changeMonth}
-                    month={mes}
+                    change = {changeMonth}
+                    mes = {mes}
+                    month={month}
                     openModal={handleOpenModal}
                     togglePaid={togglePaid}
                     handleEdit={handleEdit}
@@ -215,18 +186,6 @@ const Finanzas = () => {
                     listaItems={listaItems}
                     salario={salario}
                 />
-                 <div>
-                    <div className="div-select">
-                        <h3 className="titulo-h4  text-center ">MES</h3>
-                        <select  onChange={changeMonth} className="select" >
-                            {meses.map(mes => (
-                                <option className="bg-zinc-300  font-bold" key={mes.key} value={mes.value}>
-                                    {mes.text}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                </div>
 
             </div>
 

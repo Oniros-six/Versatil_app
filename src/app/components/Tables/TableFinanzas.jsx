@@ -1,9 +1,43 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Boton from "../Buttons/Boton";
 
 const TableFinanzas = (props) => {
-    const {openModal, listaItems, togglePaid, handleEdit, handleDelete, month } = props;
- 
+    const {openModal, listaItems, togglePaid, handleEdit, handleDelete, month, change, mes } = props;
+    
+    useEffect(() => {
+        change(month)
+    }, [month])
+
+    const theMonth = (mes) => {
+        switch (mes) {
+            case 'Enero':
+                return '01'
+            case 'Febrero':
+                return '02'
+            case 'Marzo':
+                return '03'
+            case 'Abril':
+                return '04'
+            case 'Mayo':
+                return '05'
+            case 'Junio':
+                return '06'
+            case 'Julio':
+                return '07'
+            case 'Agosto':
+                return '08'
+            case 'Septiembre':
+                return '09'
+            case 'Octubre':
+                return '10'
+            case 'Noviembre':
+                return '11'
+            case 'Diciembre':
+                return '12'
+        }
+    }
+
+
     return (
             <table className="table w-8/12">
                 <thead className="table-thead">
@@ -31,13 +65,13 @@ const TableFinanzas = (props) => {
                         </tr>
                         :
 
-                        Object.entries(listaItems).filter((item) => item[1].date.slice(5,7) === month).map(([key, value]) => (
+                        Object.entries(listaItems).filter((item) => item[1].date.slice(5,7) === theMonth(mes)).map(([key, value]) => (
                             
                             <tr key={value._id} className={`${value.paid !== false ? "table-tr hover:bg-slate-300 line-through text-[#a9a9a9]" : "table-tr hover:bg-slate-300"}`} >
                                 <td className="table-td item">
                                     {value.item}
                                 </td>
-                        
+                    
                                 <td className="table-td unidades text-right">
                                     {value.subTotal}$
                                 </td>
