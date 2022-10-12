@@ -41,7 +41,7 @@ app.use(boomErrorHandler);
 app.use(errorHandler);
 
 // Statics
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'build')));
 
 // Start server
 app.listen(process.env.PORT, () => {
