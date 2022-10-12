@@ -7,9 +7,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "webpack --mode production",
     "start": "node src/server.js",
-    "dev": "nodemon src/server.js",
-    "webpack": "webpack --mode development --watch",
+    "dev": "webpack --mode development --watch && nodemon src/server.js",
     "tailwind": "postcss src/app/dist/tailwind.css --output src/app/dist/styles.css --watch"
   },
   "keywords": [],
@@ -49,3 +49,4 @@
     "webpack-cli": "^4.10.0"
   }
 }
+
