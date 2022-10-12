@@ -4,7 +4,7 @@ import Boton from "../Buttons/Boton";
 
 
 const TableResumen = (props) => {
-    const { listaItems, salario} = props;
+    const { listaItems, salario, mes} = props;
     const [month, setMonth] = useContext(AppContext);
 
     const resumen = () => {
@@ -139,9 +139,11 @@ const TableResumen = (props) => {
 
                     Object.entries(resumen()).map(([key, value]) => (
 
-                        <tr key={key} className="table-tr hover:bg-slate-300">
-                            <td className="table-td costo">
-                                <Boton clases = "text-left" nombre={key} onClick={() => setMonth(key)}/>
+                        <tr key={key} className={`${key === mes ? 'table-tr bg-zinc-300' : 'table-tr hover:bg-red-200'}`}>
+                            <td className="table-td costo" >
+                                <Boton  nombre={key} 
+                                        clases = "text-left underline decoration-2 underline-offset-2 hover:decoration-4 hover:underline-offset-4 decoration-pink-700" 
+                                        onClick={() => setMonth(key)}/>
                             </td>
                             <td className="table-td costo text-right text-lime-600">
                                 {value}$

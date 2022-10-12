@@ -185,6 +185,7 @@ const Finanzas = () => {
                 <TableResumen
                     listaItems={listaItems}
                     salario={salario}
+                    mes = {mes}
                 />
 
             </div>

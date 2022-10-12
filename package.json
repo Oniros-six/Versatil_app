@@ -10,7 +10,7 @@
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
     "webpack": "webpack --mode development --watch",
-    "watchtail": "postcss src/app/dist/tailwind.css --output src/app/dist/styles.css --watch"
+    "tailwind": "postcss src/app/dist/tailwind.css --output src/app/dist/styles.css --watch"
   },
   "keywords": [],
   "author": "",
