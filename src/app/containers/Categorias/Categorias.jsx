@@ -30,7 +30,8 @@ const Categorias = () => {
         getCategorias();
     }, []);
 
-    const user = "631ba9569f4fc6d8c5dc8171";
+    const user = "631ba9569f4fc6d8c5dc8178";
+    // const user = "631ba9569f4fc6d8c5dc8171";
     const normalizar = (name) => {
         const nombre = name.trim().charAt(0).toUpperCase() + name.slice(1);
         return nombre;
