@@ -169,7 +169,7 @@ const Finanzas = () => {
 
     return (
         <>
-            <Navbar zona={"Mis finanzas"} />
+            <Navbar zona={"Finanzas"} />
             <div className="tables-containers">
 
                 <TableFinanzas
