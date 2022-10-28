@@ -9,7 +9,7 @@ const NotasYCategorias = () => {
     const [idCat, setIdCat] = useContext(AppContext);
     return(
         <>
-        <Navbar zona={"Mis notas"} />
+        <Navbar zona={"Notas"} />
             <div className="tables-containers">
                 <Categorias/>
                 <Notas cat={idCat}/>

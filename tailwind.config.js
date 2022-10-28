@@ -9,7 +9,10 @@ module.exports = {
     extend: {
       spacing: {
         '36em': '36em',
-      }
+      },
+      colors: {
+        'ambar': '#e67700',
+      },
     },
   },
   plugins: [],

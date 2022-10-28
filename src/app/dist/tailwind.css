@@ -27,11 +27,18 @@
     }
 
     .nav{
-        @apply flex flex-row justify-around bg-zinc-300 rounded 
+        @apply flex flex-row justify-around bg-black rounded  border-4 border-ambar border-t-0
             p-2 
             m-1
             sm:p-1 sm:m-0
 
+    }
+
+    .menuDropDown{
+        @apply absolute inline-block border-solid border-b-2 border-ambar bg-black text-ambar p-1
+    }
+    .dropDownLink{
+        @apply border-solid border-2 border-transparent hover:border-ambar font-bold
     }
 
     /* TITULOS */
