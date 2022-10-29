@@ -7,6 +7,7 @@ import Table from "../../components/Tables/Table";
 import Boton from "../../components/Buttons/Boton";
 import Modal from "../../components/Modals/Modal";
 import FormNotas from "../../components/Forms/FormNotas"
+import MenuNotas from "../../components/Menu/MenuNotas"
 
 let notaInit = {
     id: "",
@@ -24,6 +25,8 @@ const Notas = ({cat}) => {
     const [openModal, setOpenModal] = useState(false);
     const [hasErrorInForm, setHasErrorInForm] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
+    const [show, setShow] = useState(false)
+    const [id, setId] = useState()
 
     useEffect(() => {
         if (typeof(cat) !== typeof("")) {
@@ -102,6 +105,10 @@ const Notas = ({cat}) => {
         handleCloseModal();
     };
 
+    const mostrarMenu = (value) => {
+        setShow(!show)
+        setId(value._id)
+    } 
     // Modal
     
     const handleOpenModal = (isEdit = false, toEdit = null) => {
@@ -148,17 +155,26 @@ const Notas = ({cat}) => {
                 {Object.entries(listaNotas).map(([key, value]) => (
                     
                     <tr key={value._id} 
-                        className={`${value.status !== false ? 'table-tr hover:bg-slate-300 line-through text-[#a9a9a9]' : 'table-tr hover:bg-slate-300'}`}>
-                        <td className="table-td nota">                            
+                    className="table-tr hover:bg-slate-300">
+                        <td className={`${value.status !== false ? 'ready table-td nota' : ' table-td nota'}`}>                            
                             {value.note}
                         </td>
-                        <td className="table-td fecha">
+                        <td className={`${value.status !== false ? 'ready table-td fecha' : ' table-td fecha'}`}>
                             {value.date.slice(0,10)}
                         </td>
                         <td className="accion">
-                            <Boton clases={`${value.status !== false ? 'boton-success' : 'boton-toggle'}`} icon={`${value.status !== false ? 'fa-solid fa-rotate-left' : 'fa-solid fa-check-double'}`} onClick={(event) => toggleNota(value._id, event)} />    
-                            <Boton clases="boton-warning" icon="far fa-edit" onClick={(event) => handleEdit(value, event)} />  
-                            <Boton clases="boton-danger" icon="far fa-trash-alt" onClick={(event) => handleDelete(value._id, event)} />
+                            <div onClick={()=> mostrarMenu(value)}>
+                                <h1 className="titulo-h3 text-ambar hover:cursor-pointer">. . .</h1>
+                                {show && value._id === id? 
+                                    <MenuNotas 
+                                        value={value}
+                                        toggleNota={toggleNota}
+                                        handleEdit={handleEdit}
+                                        handleDelete={handleDelete}
+                                        /> 
+                                : 
+                                    <></>}
+                            </div>
                         </td>
                     </tr>
 

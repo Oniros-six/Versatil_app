@@ -5,7 +5,7 @@ const Menu = (props) => {
 
     return (
         <>
-        <div div className = 'menuDropDown' >
+        <div className = 'menuDropDown' >
             <ul>
                 <li className='dropDownLink'>
                     <a href="/#">Mi perfil</a>

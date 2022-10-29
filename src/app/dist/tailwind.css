@@ -162,7 +162,7 @@
         @apply w-1/5 text-center
     }
     
-    .paid {
+    .ready {
         @apply line-through text-[#a9a9a9]
     }
 

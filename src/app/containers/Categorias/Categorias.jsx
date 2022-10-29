@@ -8,6 +8,7 @@ import Table from "../../components/Tables/Table";
 import Boton from "../../components/Buttons/Boton";
 import Modal from "../../components/Modals/Modal";
 import FormCategoria from "../../components/Forms/FormCategoria";
+import MenuCategorias from "../../components/Menu/MenuCategorias"
 
 let categoriaInit = {
     id:"",
@@ -25,6 +26,8 @@ const Categorias = (props) => {
     const [hasErrorInForm, setHasErrorInForm] = useState(false);
     const [openModal, setOpenModal] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
+    const [show, setShow] = useState(false)
+    const [id, setId] = useState()
 
     useEffect(() =>  {
         getCategorias();
@@ -112,6 +115,11 @@ const Categorias = (props) => {
         setErrorMsg('');
     };
 
+    const mostrarMenu = (value) => {
+        setShow(!show)
+        setId(value._id)
+    } 
+
     // form
     const handleChangeInputForm = (property) => {
         // Si el valor del input es vacío, entonces setea que hay un error
@@ -138,8 +146,17 @@ const Categorias = (props) => {
                             <Boton  nombre={value.name} onClick={() => setIdCat(value._id)}/>
                         </td>
                         <td className="accion-cat">
-                            <Boton clases="boton-danger" icon="far fa-trash-alt" onClick={(event) => handleDelete(value._id, event)} />
-                            <Boton clases="boton-warning" icon="far fa-edit" onClick={(event) => handleEdit(value, event)} />    
+                        <div onClick={()=> mostrarMenu(value)}>
+                                <h1 className="titulo-h3 text-ambar hover:cursor-pointer">. . .</h1>
+                                {show && value._id === id? 
+                                    <MenuCategorias 
+                                        value={value}
+                                        handleEdit={handleEdit}
+                                        handleDelete={handleDelete}
+                                        /> 
+                                : 
+                                    <></>}
+                            </div>
                         </td>
                     </tr>
                 ))}

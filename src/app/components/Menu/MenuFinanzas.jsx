@@ -6,7 +6,7 @@ const MenuFinanzas = (props) => {
 
     return (
         <div className = 'menuDropDown' >
-            <ul>
+                <ul>
                 <li className='dropDownLink'>
                     <Boton  clases={`${value.paid !== false ? 'boton-success' : 'boton-toggle'}`} 
                                             icon={`${value.paid !== false ? 'fa-solid fa-rotate-left' : 'fa-solid fa-check-double'}`} 
