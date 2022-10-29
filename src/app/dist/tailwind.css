@@ -149,19 +149,23 @@
     .item{
         @apply w-1/5 
     }
+
     .subtotal{ 
         @apply w-1/5 text-center
     }
+
     .descripcion{
         @apply w-1/5 text-center
     }
+
     .fecha{
         @apply w-1/5 text-center
     }
+
     .acciones{
         @apply w-1/5 text-center
     }
-    
+
     .ready {
         @apply line-through text-[#a9a9a9]
     }
@@ -169,33 +173,26 @@
     /* MODALES */
 
     .modal-screen{
-            @apply bg-slate-900/[.5] fixed top-0 left-0 h-screen w-screen 
+            @apply flex flex-col justify-center items-center
+                bg-slate-900/[.5] 
+                fixed 
+                top-0 
+                left-0 
+                h-screen
+                w-screen 
     }
 
     .modal{
         @apply 
         flex flex-col
-        bg-zinc-200 rounded-md shadow-blue-600 shadow-md 
-        right-1/2 
-        top-1/4
-        w-96 h-56
         absolute    
-        translate-x-1/2    
-    }
-
-    .modal-notas{
-        @apply 
-        flex flex-col
         bg-zinc-200 rounded-md shadow-blue-600 shadow-md 
-        right-1/2 
-        top-1/4
-        w-96 h-4/6
-        absolute    
-        translate-x-1/2    
+        border-solid border-2 border-ambar
+        
     }
 
     .modal-header{
-        @apply border-solid border-b-2 border-sky-500 flex flex-row justify-between
+        @apply border-solid border-b-2 border-ambar flex flex-row justify-between
     }
 
     .modal-body{
@@ -207,6 +204,7 @@
     .formulario{
         @apply flex flex-col justify-evenly
     }
+
     .form-input{
         @apply flex flex-col justify-evenly mb-2
     }
@@ -225,18 +223,6 @@
 
     .input{
         @apply p-2 rounded border-solid border-2 border-sky-500
-    }
-
-    .scrollbar::-webkit-scrollbar {
-        @apply w-0.5 
-    }
-      
-    .scrollbar::-webkit-scrollbar-track { 
-        @apply bg-white
-      }
-      
-    .scrollbar::-webkit-scrollbar-thumb { 
-        @apply bg-red-500
     }
 
     .select {
@@ -264,4 +250,18 @@
         @apply flex flex-col justify-center
     }
 
+    /* SCROLLBAR */
+    .scrollbar::-webkit-scrollbar {
+        @apply w-0.5 
+    }
+      
+    .scrollbar::-webkit-scrollbar-track { 
+        @apply bg-white
+      }
+      
+    .scrollbar::-webkit-scrollbar-thumb { 
+        @apply bg-red-500
+    }
+
 }
+

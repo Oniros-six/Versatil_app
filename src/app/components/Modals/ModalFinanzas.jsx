@@ -13,12 +13,12 @@ const ModalFinanzas = (props) => {
         <>
             {show  &&
                 <div className="modal-screen" onKeyDown={(event) =>handleKeyDown(event)}>
-                    <div className="modal-notas">
+                    <div className="modal w-[24rem] h-[32rem]">
                         <div className="modal-header">
                             <h4 className="titulo-h3 p-2">
                                 { isEdit ? 'Editar': 'Agregar' } item
                             </h4>
-                            <Boton clases="boton-danger rounded-full py-2 px-4 m-1 text-md" onClick={onHide} icon="fa-solid fa-xmark"/>
+                            <Boton clases="boton-danger" onClick={onHide} icon="fa-solid fa-xmark"/>
                         </div>
 
                         <div className="modal-body">

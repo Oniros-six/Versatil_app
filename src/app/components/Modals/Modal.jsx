@@ -17,12 +17,12 @@ const Modal = (props) => {
                     {zona === "nota"?
 
                     // Modal notas
-                    <div className="modal-notas">
+                    <div className="modal w-[24rem] h-[30rem]">
                         <div className="modal-header">
                             <h4 className="titulo-h3 p-2">
                                 { isEdit ? 'Editar': 'Agregar' } nota
                             </h4>
-                            <Boton clases="boton-danger rounded-full py-2 px-4 m-1 text-md" onClick={onHide} icon="fa-solid fa-xmark"/>
+                            <Boton clases="boton-danger" onClick={onHide} icon="fa-solid fa-xmark"/>
                         </div>
 
                         <div className="modal-body">
@@ -31,12 +31,12 @@ const Modal = (props) => {
                     </div> 
                     :
                     // Modal categoria
-                    <div className="modal"> 
+                    <div className="modal w-[24rem] h-[14rem]"> 
                         <div className="modal-header">
                             <h4 className="titulo-h3 p-2">
                                 { isEdit ? 'Editar': 'Agregar' } categoria
                             </h4>
-                            <Boton clases="boton-danger rounded-full py-2 px-4 m-1 text-md" onClick={onHide} icon="fa-solid fa-xmark"/>
+                            <Boton clases="boton-danger" onClick={onHide} icon="fa-solid fa-xmark"/>
                         </div>
 
                         <div className="modal-body">
