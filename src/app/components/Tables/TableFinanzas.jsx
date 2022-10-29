@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from "react";
 import MenuFinanzas from "../Menu/MenuFinanzas"
-import Boton from "../Buttons/Boton";
 
 
 const TableFinanzas = (props) => {
-    const {openModal, listaItems, togglePaid, handleEdit, handleDelete, month, change, mes } = props;
+    const {listaItems, togglePaid, handleEdit, handleDelete, month, change, mes } = props;
     const [show, setShow] = useState(false)
     const [id, setId] = useState()
 
@@ -49,11 +48,6 @@ const TableFinanzas = (props) => {
     return (
             <table className="table w-8/12">
                 <thead className="table-thead">
-                    <tr>
-                        <th>
-                            <Boton nombre="Nuevo item " clases="boton rounded-full text-sm py-1 px-2 " icon="fa fa-plus"  onClick={() => openModal()} />                     
-                        </th>
-                    </tr>
                     <tr className="table-tr">
                         <th className="table-td item">Item</th>
                         <th className="table-td unidades text-right">SubTotal</th>

@@ -20,7 +20,8 @@
 
     /* GENERAL */
     .body{
-        @apply  bg-[#88b7ba] flex flex-col space-x-0 
+        /* bg-[#88b7ba] */
+        @apply  bg-zinc-800 flex flex-col space-x-0 
         sm:m-1 sm:p-1 sm:py-1
         md:m-2 md:p-6 md:py-1
         lg:m-2 lg:p-6 lg:py-1
@@ -66,7 +67,7 @@
     /* BOTONES */
 
     .boton{
-        @apply rounded bg-cyan-500 shadow-cyan-500/50 shadow-lg text-white py-2 px-4 m-1 hover:ring-2 ring-cyan-500 ;
+        @apply rounded border-solid border-ambar border-2 bg-black shadow-cyan-500/50 shadow-lg text-ambar py-2 px-4 m-1 hover:ring-2 ring-cyan-500 ;
     }
     
     .boton-danger{

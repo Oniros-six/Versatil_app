@@ -6,6 +6,7 @@ import TableFinanzas from "../../components/Tables/TableFinanzas"
 import TableResumen from "../../components/Tables/TableResumen";
 import ModalFinanzas from "../../components/Modals/ModalFinanzas";
 import FormFinanzas from "../../components/Forms/FormFinanzas";
+import Boton from "../../components/Buttons/Boton";
 
 const Finanzas = () => {
     const [month, setMonth] = useContext(AppContext);
@@ -177,12 +178,13 @@ const Finanzas = () => {
                     change = {changeMonth}
                     mes = {mes}
                     month={month}
-                    openModal={handleOpenModal}
                     togglePaid={togglePaid}
                     handleEdit={handleEdit}
                     handleDelete={handleDelete}
                     listaItems={listaItems}
                 />
+                <Boton clases="boton rounded-full text-md py-1 px-2 w-9 h-9 m-4 " icon="fa fa-plus"  onClick={() => handleOpenModal()} />                     
+
                 <TableResumen
                     listaItems={listaItems}
                     salario={salario}
