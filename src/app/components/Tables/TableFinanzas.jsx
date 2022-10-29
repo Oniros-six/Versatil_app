@@ -60,29 +60,25 @@ const TableFinanzas = (props) => {
                 <tbody className="table-tbody scrollbar">
 
                 {listaItems === undefined ?
-                        <tr className="flex flex-row justify-center">
-                            <td>
-                                <h4 className="titulo-h3">Aún no tienes gastos 🤯</h4>
-                            </td>
-                        </tr>
+                        <></>
                         :
 
                         Object.entries(listaItems).filter((item) => item[1].date.slice(5,7) === theMonth(mes)).map(([key, value]) => (
                             
                             <tr key={value._id} className="table-tr hover:bg-slate-300" >
-                                <td className={`${value.paid !== false ? "table-td item line-through text-[#a9a9a9]" : "table-td item"}`}>
+                                <td className={`${value.paid !== false ? "table-td item paid" : "table-td item"}`}>
                                     {value.item}
                                 </td>
                                 
-                                <td className={`${value.paid !== false ? "table-td descripcion line-through text-[#a9a9a9]" : "table-td descripcion"}`}>
+                                <td className={`${value.paid !== false ? "table-td descripcion paid" : "table-td descripcion"}`}>
                                     {value.description}
                                 </td>
 
-                                <td className={`${value.paid !== false ? "table-td subtotal line-through text-[#a9a9a9]" : "table-td subtotal"}`}>
+                                <td className={`${value.paid !== false ? "table-td subtotal paid" : "table-td subtotal"}`}>
                                     {value.subTotal}$
                                 </td>
 
-                                <td className={`${value.paid !== false ? "table-td fecha line-through text-[#a9a9a9]" : "table-td fecha"}`}>
+                                <td className={`${value.paid !== false ? "table-td fecha paid" : "table-td fecha"}`}>
                                     {value.date.slice(5,10)}
                                 </td>
 

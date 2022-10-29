@@ -15,7 +15,7 @@ let categoriaInit = {
     user: ""
 };
 
-const Categorias = () => {
+const Categorias = (props) => {
     // Use contexts hooks
     const [idCat, setIdCat] = useContext(AppContext);
     // Hooks de Estado
@@ -30,8 +30,7 @@ const Categorias = () => {
         getCategorias();
     }, []);
 
-    const user = "631ba9569f4fc6d8c5dc8178";
-    // const user = "631ba9569f4fc6d8c5dc8171";
+    const user = "631ba9569f4fc6d8c5dc8171";
     const normalizar = (name) => {
         const nombre = name.trim().charAt(0).toUpperCase() + name.slice(1);
         return nombre;
@@ -131,7 +130,7 @@ const Categorias = () => {
 
     return (
         <>
-            <Table openModal={handleOpenModal} lista={listaCategorias}>
+            <Table lista={listaCategorias}>
 
                 {Object.entries(listaCategorias).map(([key, value]) => (
                     <tr key={value._id} className={`${value._id === idCat ? 'table-tr bg-sky-200 decoration' : 'table-tr hover:bg-zinc-300'}`}>
@@ -145,6 +144,12 @@ const Categorias = () => {
                     </tr>
                 ))}
             </Table>
+
+                     
+            <div className="buttons-container">
+                <Boton clases="boton rounded-md text-md py-1 px-2 w-16" secondicon="fa fa-plus" icon="fas fa-arrow-left mr-1"  onClick={() => handleOpenModal()} />                        
+            </div>
+                    
 
             <Modal
                 isEdit={isEdit}

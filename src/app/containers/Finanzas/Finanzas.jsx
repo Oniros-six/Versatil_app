@@ -183,8 +183,9 @@ const Finanzas = () => {
                     handleDelete={handleDelete}
                     listaItems={listaItems}
                 />
-                <Boton clases="boton rounded-full text-md py-1 px-2 w-9 h-9 m-4 " icon="fa fa-plus"  onClick={() => handleOpenModal()} />                     
-
+                <div className="buttons-container">
+                   <Boton clases="boton rounded-full text-md py-1 px-2 w-9 h-9 m-4 " icon="fa fa-plus"  onClick={() => handleOpenModal()} />                     
+                </div>
                 <TableResumen
                     listaItems={listaItems}
                     salario={salario}

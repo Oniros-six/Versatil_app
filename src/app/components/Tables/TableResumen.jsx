@@ -136,13 +136,13 @@ const TableResumen = (props) => {
                     Object.entries(resumen()).map(([key, value]) => (
 
                         <tr key={key} className={`${key === mes ? 'table-tr bg-zinc-300' : 'table-tr hover:bg-red-200'}`}>
-                            <td className="table-resume-td w-1/3" >
-                                <Boton  nombre={key} onClick={() => setMonth(key)}/>
+                            <td className="flex w-1/3" >
+                                <Boton clases="hover:font-semibold"  nombre={key} onClick={() => setMonth(key)}/>
                             </td>
-                            <td className="table-resume-td text-lime-600 w-2/6">
+                            <td className="flex text-lime-600 w-2/6">
                                 {value}$
                             </td>
-                            <td className="table-resume-td text-lime-600 w-1/6">
+                            <td className="flex text-lime-600 w-1/6">
                                 {value === 0 ? 0 : salario - value}$
                             </td>
                         </tr>

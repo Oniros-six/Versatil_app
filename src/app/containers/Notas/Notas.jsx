@@ -139,8 +139,11 @@ const Notas = ({cat}) => {
 
     return (
         <>
- 
-            <Table zona={"nota"} openNotasModal={handleOpenModal} lista={listaNotas} >
+             <div className="buttons-container">
+                <Boton clases="boton rounded-md text-md py-1 px-2 w-16" secondicon="fas fa-arrow-right" icon="fa fa-plus mr-1" onClick={() => handleOpenModal()} /> 
+            </div>
+
+            <Table zona={"nota"} lista={listaNotas} >
                
                 {Object.entries(listaNotas).map(([key, value]) => (
                     
