@@ -16,14 +16,14 @@ const Table = (props) => {
                     
                     {zona === "nota"?
                         <tr className="table-tr">
-                            <th className="table-td nota">Nota</th>
-                            <th className="table-td fecha">Fecha</th>
-                            <th className="table-td accion">Acciones</th>
+                            <th className="table-th nota">Nota</th>
+                            <th className="table-th fecha">Fecha</th>
+                            <th className="table-th accion">Acciones</th>
                         </tr>
                         :
                         <tr className="table-tr">
-                            <th className="table-td categoria">Categoria</th>
-                            <th className="table-td accion-cat">Acciones</th>
+                            <th className="table-th categoria">Categoria</th>
+                            <th className="table-th accion-cat">Acciones</th>
                         </tr>
                     }
                 </thead>

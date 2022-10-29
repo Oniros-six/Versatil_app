@@ -121,34 +121,28 @@ const TableResumen = (props) => {
         <table className="table w-3/12">
             <thead className="table-thead">
                 <tr className="table-tr">
-                    <th className="table-td costo text-left">Mes</th>
-                    <th className="table-td text-right costo">Gastos</th>
-                    <th className="table-td text-right costo">Ahorro</th>
+                    <th className="table-th flex justify-self-start">Mes</th>
+                    <th className="table-th flex justify-self-center ">Gastos</th>
+                    <th className="table-th flex justify-self-end">Ahorro</th>
                 </tr>
             </thead>
 
             <tbody className="table-tbody">
                 {listaItems === undefined ?
-                    <tr className="flex flex-row justify-center">
-                        <td>
-                            <h4 className="titulo-h3">🤯</h4>
-                        </td>
-                    </tr>
+                   <>Loading</>
 
                     :
 
                     Object.entries(resumen()).map(([key, value]) => (
 
                         <tr key={key} className={`${key === mes ? 'table-tr bg-zinc-300' : 'table-tr hover:bg-red-200'}`}>
-                            <td className="table-td costo" >
-                                <Boton  nombre={key} 
-                                        clases = "text-left underline decoration-2 underline-offset-2 hover:decoration-4 hover:underline-offset-4 decoration-pink-700" 
-                                        onClick={() => setMonth(key)}/>
+                            <td className="table-resume-td w-1/3" >
+                                <Boton  nombre={key} onClick={() => setMonth(key)}/>
                             </td>
-                            <td className="table-td costo text-right text-lime-600">
+                            <td className="table-resume-td text-lime-600 w-2/6">
                                 {value}$
                             </td>
-                            <td className="table-td costo text-right text-lime-600">
+                            <td className="table-resume-td text-lime-600 w-1/6">
                                 {value === 0 ? 0 : salario - value}$
                             </td>
                         </tr>

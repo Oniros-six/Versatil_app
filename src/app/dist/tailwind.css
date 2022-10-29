@@ -28,15 +28,11 @@
     }
 
     .nav{
-        @apply flex flex-row justify-around bg-black rounded  border-4 border-ambar border-t-0
-            p-2 
-            m-1
-            sm:p-1 sm:m-0
-
+        @apply flex flex-row justify-between  bg-black rounded  border-4 border-ambar border-t-0 mb-4 px-4 py-3   
     }
 
     .menuDropDown{
-        @apply absolute inline-block border-solid border-b-2 border-ambar bg-black text-ambar p-1
+        @apply absolute rounded-md inline-block border-solid border-b-2 border-ambar bg-black text-ambar p-2 m-4
     }
     .dropDownLink{
         @apply border-solid border-2 border-transparent hover:border-ambar font-bold
@@ -93,23 +89,20 @@
     }
 
     .decoration{
-        @apply font-bold underline decoration-emerald-500 decoration-double underline-offset-1
+        /* Aplica en notas */
+        @apply font-bold underline decoration-emerald-500 decoration-double underline-offset-1 
     }
 
     .table{
-        @apply bg-zinc-200 rounded-md w-1/3 m-2 shadow-emerald-500 shadow-lg
+        @apply bg-zinc-300 rounded-md w-1/3 m-2 shadow-red-700 shadow-lg border-solid border-2 border-red-700
     }
 
     .table-notas{
-        @apply w-2/3 bg-zinc-200 rounded-md m-2 shadow-emerald-500 shadow-lg
+        @apply bg-zinc-300 rounded-md w-2/3 m-2 shadow-red-700 shadow-lg border-solid border-2 border-red-700
     }
 
     .table-thead{
-        @apply border-solid border-b-2 border-sky-500  
-    }
-    
-    .th{
-        @apply text-xl font-bold text-amber-900
+        @apply border-solid border-b-2 border-red-700 bg-black
     }
 
     .table-tbody{
@@ -117,18 +110,26 @@
     }
 
     .table-tr{
-        @apply flex flex-row justify-between border-solid border-b-2 border-sky-300 px-2 
+        @apply flex flex-row justify-between border-solid border-b-2 border-red-700 px-2 
+    }
+
+    .table-resume-td{
+        @apply flex
     }
 
     .table-td{
-        @apply flex flex-col justify-center text-center
+        @apply flex flex-col justify-center 
+    }
+
+    .table-th {
+        @apply text-ambar
     }
 
     .nota{
         @apply w-4/6 text-left
     }
 
-    .fecha{
+    .fechaNotas{
         @apply w-1/6
     }
 
@@ -143,25 +144,25 @@
     .accion-cat{
         @apply w-3/12 flex flex-row items-center justify-center
     }
+    
+    /* finanzas */
+    .acciones{
+        @apply w-1/5 text-center
+    }
 
     .item{
-        @apply w-6/12 text-left
+        @apply w-1/5 
     }
-    
-    .costo{
-        @apply w-2/12 
+    .subtotal{ 
+        @apply w-1/5 text-center
+    }
+    .descripcion{
+        @apply w-1/5 text-center
     }
     .fecha{
-        @apply w-2/12 
+        @apply w-1/5 text-center
     }
-    
-    .unidades{
-        @apply w-2/12
-    }
-    
-    .acciones{
-        @apply w-3/12 flex flex-row items-center justify-center
-    }
+
 
     /* MODALES */
 

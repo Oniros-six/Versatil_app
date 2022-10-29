@@ -9,8 +9,8 @@ const Navbar = (props) => {
     return (
         <div>
             <div className="nav">
-                <h1 className="titulo-h1 text-ambar hover:cursor-default">{zona}</h1>
-                <div onClick={()=>setShow(!show)}>
+                <h1 className="titulo-h1 text-ambar hover:cursor-default ">{zona}</h1>
+                <div onClick={()=>setShow(!show)} >
                     <h1 className="titulo-h1 text-ambar hover:cursor-pointer border-solid border-b-2 border-ambar">Menú</h1>
                 {show ? 
                     <Menu area={zona}/> 

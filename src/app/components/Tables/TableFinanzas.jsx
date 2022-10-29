@@ -49,11 +49,11 @@ const TableFinanzas = (props) => {
             <table className="table w-8/12">
                 <thead className="table-thead">
                     <tr className="table-tr">
-                        <th className="table-td item">Item</th>
-                        <th className="table-td unidades text-right">SubTotal</th>
-                        <th className="table-td unidades text-right">Description</th>
-                        <th className="table-td fecha">Fecha</th>
-                        <th className="table-td acciones ml-2">Acciones</th>
+                        <th className="table-th item">Item</th>
+                        <th className="table-th descripcion">Descripción</th>
+                        <th className="table-th subtotal">SubTotal</th>
+                        <th className="table-th fecha">Fecha</th>
+                        <th className="table-th acciones ">Acciones</th>
                     </tr>
                 </thead>
                 
@@ -73,18 +73,20 @@ const TableFinanzas = (props) => {
                                 <td className={`${value.paid !== false ? "table-td item line-through text-[#a9a9a9]" : "table-td item"}`}>
                                     {value.item}
                                 </td>
-                                <td className={`${value.paid !== false ? "table-td line-through text-[#a9a9a9] unidades text-right" : "table-td unidades text-right"}`}
->
-                                    {value.subTotal}$
-                                </td>
-                                <td className={`${value.paid !== false ? "table-td line-through text-[#a9a9a9] unidades text-right" : "table-td unidades text-right"}`}
->
+                                
+                                <td className={`${value.paid !== false ? "table-td descripcion line-through text-[#a9a9a9]" : "table-td descripcion"}`}>
                                     {value.description}
                                 </td>
-                                <td className={`${value.paid !== false ? "table-td line-through text-[#a9a9a9] fecha" : "table-td fecha"}`}>
+
+                                <td className={`${value.paid !== false ? "table-td subtotal line-through text-[#a9a9a9]" : "table-td subtotal"}`}>
+                                    {value.subTotal}$
+                                </td>
+
+                                <td className={`${value.paid !== false ? "table-td fecha line-through text-[#a9a9a9]" : "table-td fecha"}`}>
                                     {value.date.slice(5,10)}
                                 </td>
-                                <td className="table-td acciones ml-4">
+
+                                <td className="table-td acciones">
                                     <div onClick={()=> mostrarMenu(value)}>
                                             <h1 className="titulo-h3 text-ambar hover:cursor-pointer">. . .</h1>
                                         {show && value._id === id? 
