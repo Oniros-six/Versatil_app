@@ -222,15 +222,15 @@
     }
 
     .input{
-        @apply p-2 rounded border-solid border-2 border-sky-500
+        @apply p-2 rounded border-solid border-2 border-ambar
     }
 
     .select {
-        @apply rounded border-solid border-2 border-sky-600 bg-zinc-300 font-bold
+        @apply rounded border-solid border-2 border-ambar bg-zinc-300 font-bold
     }
 
     .div-select {
-        @apply bg-zinc-200 p-2 pt-1 rounded border-solid border-2 border-sky-600
+        @apply bg-zinc-200 p-2 pt-1 rounded border-solid border-2 border-ambar
     }
 
 
