@@ -118,6 +118,7 @@ const Finanzas = () => {
     }
 
     const togglePaid = async (id) => {
+
         try {
             await axios.put(`api/finanzas/toggle/${id}`)
             getItems()

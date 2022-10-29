@@ -1266,6 +1266,10 @@ video {
   -webkit-text-decoration-line: line-through;
           text-decoration-line: line-through;
 }
+.no-underline {
+  -webkit-text-decoration-line: none;
+          text-decoration-line: none;
+}
 .decoration-pink-700 {
   -webkit-text-decoration-color: #be185d;
           text-decoration-color: #be185d;

@@ -1,9 +1,13 @@
 import React, {useEffect, useState} from "react";
+import MenuFinanzas from "../Menu/MenuFinanzas"
 import Boton from "../Buttons/Boton";
+
 
 const TableFinanzas = (props) => {
     const {openModal, listaItems, togglePaid, handleEdit, handleDelete, month, change, mes } = props;
-    
+    const [show, setShow] = useState(false)
+    const [id, setId] = useState()
+
     useEffect(() => {
         change(month)
     }, [month])
@@ -37,6 +41,10 @@ const TableFinanzas = (props) => {
         }
     }
 
+    const mostrarMenu = (value) => {
+        setShow(!show)
+        setId(value._id)
+    } 
 
     return (
             <table className="table w-8/12">
@@ -67,27 +75,34 @@ const TableFinanzas = (props) => {
 
                         Object.entries(listaItems).filter((item) => item[1].date.slice(5,7) === theMonth(mes)).map(([key, value]) => (
                             
-                            <tr key={value._id} className={`${value.paid !== false ? "table-tr hover:bg-slate-300 line-through text-[#a9a9a9]" : "table-tr hover:bg-slate-300"}`} >
-                                <td className="table-td item">
+                            <tr key={value._id} className="table-tr hover:bg-slate-300" >
+                                <td className={`${value.paid !== false ? "table-td item line-through text-[#a9a9a9]" : "table-td item"}`}>
                                     {value.item}
                                 </td>
-                    
-                                <td className="table-td unidades text-right">
+                                <td className={`${value.paid !== false ? "table-td line-through text-[#a9a9a9] unidades text-right" : "table-td unidades text-right"}`}
+>
                                     {value.subTotal}$
                                 </td>
-                                <td className="table-td unidades text-right">
+                                <td className={`${value.paid !== false ? "table-td line-through text-[#a9a9a9] unidades text-right" : "table-td unidades text-right"}`}
+>
                                     {value.description}
                                 </td>
-                                <td className="table-td fecha">
+                                <td className={`${value.paid !== false ? "table-td line-through text-[#a9a9a9] fecha" : "table-td fecha"}`}>
                                     {value.date.slice(5,10)}
                                 </td>
                                 <td className="table-td acciones ml-4">
-                                    <Boton  clases={`${value.paid !== false ? 'boton-success' : 'boton-toggle'}`} 
-                                            icon={`${value.paid !== false ? 'fa-solid fa-rotate-left' : 'fa-solid fa-check-double'}`} 
-                                            onClick={(event) => togglePaid(value._id, event)} 
-                                        />    
-                                    <Boton clases="boton-warning" icon="far fa-edit" onClick={(event) => handleEdit(value, event)} />  
-                                    <Boton clases="boton-danger" icon="far fa-trash-alt" onClick={(event) => handleDelete(value._id, event)} />
+                                    <div onClick={()=> mostrarMenu(value)}>
+                                            <h1 className="titulo-h3 text-ambar hover:cursor-pointer">. . .</h1>
+                                        {show && value._id === id? 
+                                            <MenuFinanzas 
+                                                value={value}
+                                                togglePaid={togglePaid}
+                                                handleEdit={handleEdit} 
+                                                handleDelete={handleDelete}
+                                                /> 
+                                        : 
+                                            <></>}
+                                    </div>
                                 </td>
                             </tr> 
                             ))
@@ -95,7 +110,6 @@ const TableFinanzas = (props) => {
                 </tbody>
             </table>
     )
-
 }
 
 export default TableFinanzas
