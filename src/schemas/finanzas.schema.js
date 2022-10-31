@@ -5,7 +5,7 @@ const subTotal = Joi.number().integer();
 const date = Joi.date();
 const description = Joi.string().max(40);
 const id = Joi.string();
-
+const diferenciador = Joi.bool();
 
 const deleteFinanzasSchema = Joi.object ({
     id: id.required()
@@ -13,6 +13,7 @@ const deleteFinanzasSchema = Joi.object ({
 
 const postFinanzasSchema = Joi.object({
     id: id.required(),
+    diferenciador: diferenciador,
     item: item.required(),
     subTotal: subTotal.required(),
     description: description,

@@ -13,6 +13,7 @@ const Finanzas = () => {
 
     let itemInit = {
         item: '',
+        diferenciador: false,
         subTotal: '',
         description: '',
         date: '',
@@ -42,6 +43,7 @@ const Finanzas = () => {
     const [newItem, setNewItem] = useState(itemInit)
     const [openModal, setOpenModal] = useState(false)
     const [isEdit, setIsEdit] = useState(false)
+    const [ingreso, setIngreso] = useState(false)
 
     useEffect(() => {
         getItems()
@@ -77,6 +79,7 @@ const Finanzas = () => {
             date: newItem.date,
             user_id: user
         }
+        
 
         try {
             const res = await axios.post(`api/finanzas/`, { item })
@@ -87,6 +90,24 @@ const Finanzas = () => {
         handleCloseModal();
     }
 
+    const postNuevoIngreso = async () => {
+        const item = {
+            item: newItem.item,
+            diferenciador: true,
+            subTotal: newItem.subTotal,
+            description: newItem.description,
+            date: newItem.date,
+            user_id: user
+        }   
+        try {
+            const res = await axios.post(`api/finanzas/ingreso`, { item })
+            getItems()
+        } catch (error) {
+            console.log(error)
+        }
+        handleCloseModal();
+    }
+    
     const handleEdit = (editData, event) => {
         event.preventDefault();
         handleOpenModal(true, editData);
@@ -135,8 +156,15 @@ const Finanzas = () => {
     };
 
     // MODAL
+    
+    const openModalIngreso = () => {
+        setIngreso(true)
+        setOpenModal(true)
+    }
+
     const handleOpenModal = (editarItem = false, editData = null) => {
         setIsEdit(editarItem);
+
         if (editarItem) {
             setNewItem({
                 _id: editData._id,
@@ -148,11 +176,13 @@ const Finanzas = () => {
             });
         }
         setOpenModal(true);
+        
     };
 
     const handleCloseModal = () => {
         setOpenModal(false);
         setIsEdit(false);
+        setIngreso(false)
         setNewItem(itemInit)
     };
 
@@ -162,9 +192,9 @@ const Finanzas = () => {
         setNewItem({ ...newItem, [input.target.name]: input.target.value });
     };
 
-    const handleSubmitForm = (e, form, isEdit) => {
+    const handleSubmitForm = (e, form, isEdit, ingreso) => {
         e.preventDefault();
-        if (form.checkValidity()) isEdit ? putItem() : postItem();
+        (form.checkValidity() && isEdit) ? putItem() : (ingreso) ? postNuevoIngreso(): postItem();
     };
 
     
@@ -185,6 +215,7 @@ const Finanzas = () => {
                 />
                 <div className="buttons-container">
                    <Boton clases="boton rounded-full text-md py-1 px-2 w-9 h-9 m-4 " icon="fa fa-plus"  onClick={() => handleOpenModal()} />                     
+                   <Boton clases="boton rounded-full text-md py-1 px-2 w-9 h-9 m-4 bg-blue-400" icon="fa fa-plus"  onClick={() => openModalIngreso()} />                     
                 </div>
                 <TableResumen
                     listaItems={listaItems}
@@ -207,6 +238,7 @@ const Finanzas = () => {
                     handleChanges={handleChangeInputForm}
                     newItem={newItem}
                     handleSubmit={handleSubmitForm}
+                    ingreso = {ingreso}
                 />
 
             </ModalFinanzas>

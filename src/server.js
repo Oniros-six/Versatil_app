@@ -30,6 +30,7 @@ app.use('/api/notes/', require('./routes/note.routes'));
 app.use('/api/finanzas/', require('./routes/finanzas.routes'));
 app.use('/api/users/', require('./routes/user.routes'));
 app.use('/api/auth/', require('./routes/auth.route'));
+app.use('/api/perfil/', require('./routes/perfil.route'));
 
 app.get('/test', checkApiKey,(req, res) => {
     res.send('funcionando')

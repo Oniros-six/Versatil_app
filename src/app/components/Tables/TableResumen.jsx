@@ -28,86 +28,110 @@ const TableResumen = (props) => {
                 let month = listaItems[i].date.slice(5, 7)
 
                 if (month === "01") {
-                    if (!listaItems[i].paid) {
+                    if (!listaItems[i].paid ) {
                         resumen.Enero += 0
-                    } else {
+                    } else if (listaItems[i].diferenciador) {
+                        resumen.Enero -= listaItems[i].subTotal
+                    } else if (!listaItems[i].diferenciador) {
                         resumen.Enero += listaItems[i].subTotal
                     }
 
                 } else if (month === "02") {
-                    if (!listaItems[i].paid) {
+                    if (!listaItems[i].paid ) {
                         resumen.Febrero += 0
-                    } else {
+                    } else if (listaItems[i].diferenciador) {
+                        resumen.Febrero -= listaItems[i].subTotal
+                    } else if (!listaItems[i].diferenciador) {
                         resumen.Febrero += listaItems[i].subTotal
                     }
 
                 } else if (month === "03") {
-                    if (!listaItems[i].paid) {
+                    if (!listaItems[i].paid ) {
                         resumen.Marzo += 0
-                    } else {
+                    } else if (listaItems[i].diferenciador) {
+                        resumen.Marzo -= listaItems[i].subTotal
+                    } else if (!listaItems[i].diferenciador) {
                         resumen.Marzo += listaItems[i].subTotal
                     }
 
                 } else if (month === "04") {
-                    if (!listaItems[i].paid) {
+                    if (!listaItems[i].paid ) {
                         resumen.Abril += 0
-                    } else {
+                    } else if (listaItems[i].diferenciador) {
+                        resumen.Abril -= listaItems[i].subTotal
+                    } else if (!listaItems[i].diferenciador) {
                         resumen.Abril += listaItems[i].subTotal
                     }
 
                 } else if (month === "05") {
-                    if (!listaItems[i].paid) {
+                    if (!listaItems[i].paid ) {
                         resumen.Mayo += 0
-                    } else {
+                    } else if (listaItems[i].diferenciador) {
+                        resumen.Mayo -= listaItems[i].subTotal
+                    } else if (!listaItems[i].diferenciador) {
                         resumen.Mayo += listaItems[i].subTotal
                     }
 
                 } else if (month === "06") {
-                    if (!listaItems[i].paid) {
+                    if (!listaItems[i].paid ) {
                         resumen.Junio += 0
-                    } else {
+                    } else if (listaItems[i].diferenciador) {
+                        resumen.Junio -= listaItems[i].subTotal
+                    } else if (!listaItems[i].diferenciador) {
                         resumen.Junio += listaItems[i].subTotal
                     }
 
                 } else if (month === "07") {
-                    if (!listaItems[i].paid) {
+                    if (!listaItems[i].paid ) {
                         resumen.Julio += 0
-                    } else {
+                    } else if (listaItems[i].diferenciador) {
+                        resumen.Julio -= listaItems[i].subTotal
+                    } else if (!listaItems[i].diferenciador) {
                         resumen.Julio += listaItems[i].subTotal
                     }
 
                 } else if (month === "08") {
-                    if (!listaItems[i].paid) {
+                    if (!listaItems[i].paid ) {
                         resumen.Agosto += 0
-                    } else {
+                    } else if (listaItems[i].diferenciador) {
+                        resumen.Agosto -= listaItems[i].subTotal
+                    } else if (!listaItems[i].diferenciador) {
                         resumen.Agosto += listaItems[i].subTotal
                     }
 
                 } else if (month === "09") {
-                    if (!listaItems[i].paid) {
+                    if (!listaItems[i].paid ) {
                         resumen.Septiembre += 0
-                    } else {
+                    } else if (listaItems[i].diferenciador) {
+                        resumen.Septiembre -= listaItems[i].subTotal
+                    } else if (!listaItems[i].diferenciador) {
                         resumen.Septiembre += listaItems[i].subTotal
                     }
 
                 } else if (month === "10") {
-                    if (!listaItems[i].paid) {
+                    if (!listaItems[i].paid ) {
                         resumen.Octubre += 0
-                    } else {
+                    } else if (listaItems[i].diferenciador) {
+                        resumen.Octubre -= listaItems[i].subTotal
+                    } else if (!listaItems[i].diferenciador) {
                         resumen.Octubre += listaItems[i].subTotal
                     }
 
                 } else if (month === "11") {
-                    if (!listaItems[i].paid) {
+                    if (!listaItems[i].paid ) {
                         resumen.Noviembre += 0
-                    } else {
+                    } else if (listaItems[i].diferenciador) {
+                        resumen.Noviembre -= listaItems[i].subTotal
+                    } else if (!listaItems[i].diferenciador) {
                         resumen.Noviembre += listaItems[i].subTotal
                     }
 
                 } else if (month === "12") {
-                    if (!listaItems[i].paid) {
+                    if (!listaItems[i].paid ) {
                         resumen.Diciembre += 0
-                    } else {
+                    } else if (listaItems[i].diferenciador) {
+                        resumen.Diciembre -= listaItems[i].subTotal
+                    } else if (!listaItems[i].diferenciador) {
                         resumen.Diciembre += listaItems[i].subTotal
                     }
 
@@ -139,7 +163,7 @@ const TableResumen = (props) => {
                             <td className="flex w-1/3" >
                                 <Boton clases="hover:font-semibold"  nombre={key} onClick={() => setMonth(key)}/>
                             </td>
-                            <td className="flex text-lime-600 w-2/6">
+                            <td className="flex text-red-600 w-2/6">
                                 {value}$
                             </td>
                             <td className="flex text-lime-600 w-1/6">

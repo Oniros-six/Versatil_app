@@ -3,7 +3,6 @@ import Boton from "../Buttons/Boton";
 
 const ModalFinanzas = (props) => {
     const {show, isEdit, onHide, children} = props;
-
     const handleKeyDown = (e) => {
         if(e.keyCode === 27){
             onHide()

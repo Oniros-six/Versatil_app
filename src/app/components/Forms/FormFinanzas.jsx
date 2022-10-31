@@ -4,7 +4,7 @@ import Boton from "../Buttons/Boton";
 const FormFinanzas = (props) => {
     const formRef = useRef(null);
     const { onHide, isEdit, handleChanges,
-        newItem, handleSubmit, normalizar } = props;
+        newItem, handleSubmit, normalizar, ingreso } = props;
 
     let date = new Date();
     let output = String(date.getFullYear() + '-' + String(date.getMonth() + 1).padStart(2, '0') + '-' + String(date.getDate()).padStart(2, '0'));
@@ -95,7 +95,7 @@ const FormFinanzas = (props) => {
 
                 <Boton clases="boton-success"
                     nombre={isEdit ? 'Editar' : 'Agregar'}
-                    onClick={(e) => handleSubmit(e, formRef.current, isEdit)}
+                    onClick={(e) => handleSubmit(e, formRef.current, isEdit, ingreso)}
                 />
                 <Boton clases="boton-warning"
                     nombre="Cerrar"

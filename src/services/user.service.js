@@ -23,11 +23,11 @@ class userService {
     }
     
     async postUser (req) {
-        const {user, pass} = req.body;
+        const {user, pass, sueldo} = req.body;
 
         const userInData = await User.findOne({user: user})
         const hashGen = await bc.hash(pass, 10);
-        const newUser = new User({user, pass: ''});
+        const newUser = new User({user, pass: '', sueldo});
         
         if (newUser.pass === '' && (userInData === null)) {
             newUser.pass = hashGen
@@ -51,8 +51,8 @@ class userService {
     }
 
     async updateUser(req) {
-        const {user, pass} = req.body;
-        const newUser = {user, pass};
+        const {user, pass, sueldo} = req.body;
+        const newUser = {user, pass, sueldo};
         await User.findByIdAndUpdate(req.params.id, newUser)
     }
 

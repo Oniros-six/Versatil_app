@@ -31,6 +31,17 @@ router.post('/',
         next(err)
     }
 })
+router.post('/ingreso',
+    validatorHandler(postFinanzasSchema, 'body[item]'),
+    async(req, res) =>{
+    try{
+        await service.postFinanzas(req)
+        res.json({status:"Saved"})
+    }
+    catch(err){
+        next(err)
+    }
+})
 
 router.put('/',
     validatorHandler(updateFinanzasSchema, 'body[item]'),

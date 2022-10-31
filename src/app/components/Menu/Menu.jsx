@@ -8,7 +8,7 @@ const Menu = (props) => {
         <div className = 'menuDropDown' >
             <ul>
                 <li className='dropDownLink'>
-                    <a href="/#">Mi perfil</a>
+                    <a href="/#/perfil">Mi perfil</a>
                 </li>
                 <li className='dropDownLink'>
                     {area === "Notas" ? 

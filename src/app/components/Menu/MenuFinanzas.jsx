@@ -7,12 +7,15 @@ const MenuFinanzas = (props) => {
     return (
         <div className = 'menuDropDown' >
                 <ul>
-                <li className='dropDownLink'>
-                    <Boton  clases={`${value.paid !== false ? 'boton-success' : 'boton-toggle'}`} 
-                                            icon={`${value.paid !== false ? 'fa-solid fa-rotate-left' : 'fa-solid fa-check-double'}`} 
-                                            onClick={(event) => togglePaid(value._id, event)} 
-                                        />  
-                </li>
+                {
+                        value.diferenciador ? <></>:
+                        <li className='dropDownLink'>
+                        <Boton  clases={`${value.paid !== false ? 'boton-success' : 'boton-toggle'}`} 
+                                                icon={`${value.paid !== false ? 'fa-solid fa-rotate-left' : 'fa-solid fa-check-double'}`} 
+                                                onClick={(event) => togglePaid(value._id, event)} 
+                                            />  
+                    </li>
+                }
                 <li className='dropDownLink'>
                     <Boton clases="boton-warning" icon="far fa-edit" onClick={(event) => handleEdit(value, event)} />  
                 </li>

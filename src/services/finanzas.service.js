@@ -10,9 +10,9 @@ class finanzaService {
 
     async postFinanzas(req) {
         const fecha = new Date()
-        const {item, subTotal, description, date, user_id} = req.body.item;
+        const {item, diferenciador, subTotal, description, date, user_id} = req.body.item;
 
-        const newItem = new Finanza({item, subTotal, description, date: date === '' ? fecha : date, user_id})
+        const newItem = new Finanza({item, diferenciador, subTotal, description, date: date === '' ? fecha : date, user_id})
         newItem.save();
     }
 
