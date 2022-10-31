@@ -34,11 +34,11 @@ const Finanzas = () => {
 
     //VARIABLES
     let actualizar = false
-    const salario = 33096
-    const user = "62d882c3e29cfe16c401a85b"
+    const user = "631ba9569f4fc6d8c5dc8171"
 
     // Hooks
     const [mes, setMes] = useState('')
+    const [salario, setSalario] = useState(0)
     const [listaItems, setListaItems] = useState([]);
     const [newItem, setNewItem] = useState(itemInit)
     const [openModal, setOpenModal] = useState(false)
@@ -47,6 +47,7 @@ const Finanzas = () => {
 
     useEffect(() => {
         getItems()
+        getSalario()
     }, [actualizar])
 
     const normalizar = (name) => {
@@ -64,6 +65,16 @@ const Finanzas = () => {
             actualizar = !actualizar
             const res = await axios.get(`api/finanzas/${user}`)
             setListaItems(res.data)
+        }
+
+        catch (error) {
+            console.log(error);
+        }
+    }
+    const getSalario = async () => {
+        try {
+            const res = await axios.get(`api/users/${user}`)
+            setSalario(res.data.sueldo)
         }
 
         catch (error) {
@@ -214,8 +225,8 @@ const Finanzas = () => {
                     listaItems={listaItems}
                 />
                 <div className="buttons-container">
-                   <Boton clases="boton rounded-full text-md py-1 px-2 w-9 h-9 m-4 " icon="fa fa-plus"  onClick={() => handleOpenModal()} />                     
-                   <Boton clases="boton rounded-full text-md py-1 px-2 w-9 h-9 m-4 bg-blue-400" icon="fa fa-plus"  onClick={() => openModalIngreso()} />                     
+                   <Boton clases="boton rounded-full text-md py-1 px-2 w-9 h-9 m-4" icon="fa fa-cash-register"  onClick={() => handleOpenModal()} />                     
+                   <Boton clases="boton rounded-full text-md py-1 px-2 w-9 h-9 m-4" icon="fas fa-hand-holding-usd"  onClick={() => openModalIngreso()} />      
                 </div>
                 <TableResumen
                     listaItems={listaItems}

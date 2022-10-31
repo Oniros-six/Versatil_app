@@ -38,6 +38,13 @@
         @apply border-solid border-2 border-transparent hover:border-ambar font-bold
     }
 
+    .separador {
+        @apply border-solid border-t-4 border-ambar rounded-full 
+    }
+    .separadorVertical {
+        @apply border-solid border-l-4 border-ambar h-[30rem]
+    }
+
     /* TITULOS */
 
     .titulo-h1{

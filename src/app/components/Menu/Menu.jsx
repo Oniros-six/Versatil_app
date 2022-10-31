@@ -10,13 +10,30 @@ const Menu = (props) => {
                 <li className='dropDownLink'>
                     <a href="/#/perfil">Mi perfil</a>
                 </li>
-                <li className='dropDownLink'>
-                    {area === "Notas" ? 
-                    <a href="/#/finanzas">Mis finanzas</a>
+                {area === "Notas" ? 
+                    <li className='dropDownLink'>
+                        <a href="/#/finanzas">Mis finanzas</a>
+                    </li>
                     :
-                    <a href="/#">Mis notas</a>
-                    }
-                </li>
+                    area === "Finanzas" ?
+                    <li className='dropDownLink'>
+                        <a href="/#">Mis notas</a>
+                    </li>
+                    :
+                    area === "Mi perfil" ?
+                    <>
+                        <li className='dropDownLink'>
+                            <a href="/#/finanzas">Mis finanzas</a>
+                        </li>
+                        
+                        <li className='dropDownLink'>
+                            <a href="/#">Mis notas</a>
+                        </li>
+                        
+                    </>
+                    :
+                    <></>
+                }
                 <li className='dropDownLink'>
                     <a href="/logout">Cerrar sesión</a>
                 </li>
