@@ -20,8 +20,8 @@
 
     /* GENERAL */
     .body{
-        /* bg-[#88b7ba] */
         @apply  bg-zinc-800 flex flex-col space-x-0 
+        font-Roboto
         sm:m-1 sm:p-1 sm:py-1
         md:m-2 md:p-6 md:py-1
         lg:m-2 lg:p-6 lg:py-1
@@ -95,7 +95,7 @@
     /* TABLAS */
 
     .tables-containers{
-        @apply flex flex-row justify-around
+        @apply flex flex-row justify-around items-center
     }
 
     .table{
@@ -107,7 +107,7 @@
     }
 
     .table-tbody{
-        @apply flex flex-col h-36em overflow-auto
+        @apply flex flex-col h-[36em] overflow-auto
     }
 
     .table-tr{

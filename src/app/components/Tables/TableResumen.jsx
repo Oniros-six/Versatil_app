@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import {AppContext} from '../../Provider'
 import Boton from "../Buttons/Boton";
 
 
 const TableResumen = (props) => {
-    const { listaItems, salario, mes} = props;
+    const { listaItems, salario, mes, setActualizar, actualizar} = props;
     const [month, setMonth] = useContext(AppContext);
 
     const resumen = () => {
@@ -141,6 +141,21 @@ const TableResumen = (props) => {
         return resumen
     }
 
+
+    useEffect(() => {
+        setActualizar(!actualizar)
+    }, [month])
+
+
+    const getMonthName = (number) => {
+        return new Date('1999-' + number + '-15').toLocaleString('es-ES', { month: 'long' })
+    }
+
+    const capitalizeFirstLetter = (str) => {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    let mesStr = capitalizeFirstLetter(getMonthName(mes))
     return (
         <table className="table w-3/12">
             <thead className="table-thead">
@@ -159,9 +174,10 @@ const TableResumen = (props) => {
 
                     Object.entries(resumen()).map(([key, value]) => (
 
-                        <tr key={key} className={`${key === mes ? 'table-tr bg-zinc-300' : 'table-tr hover:bg-red-200'}`}>
+                        <tr key={key} className={`${key === mesStr ? 'table-tr bg-zinc-300' : 'table-tr hover:bg-red-200'}`}>
                             <td className="flex w-1/3" >
-                                <Boton clases="hover:font-semibold"  nombre={key} onClick={() => setMonth(key)}/>
+                                <Boton clases={`${key === month ? 'hover:font-semibold font-bold' : 'hover:font-semibold'}`}  nombre={key} onClick={() => setMonth(key)}/>
+                                
                             </td>
                             <td className="flex text-red-600 w-2/6">
                                 {value}$

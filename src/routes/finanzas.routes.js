@@ -12,8 +12,26 @@ router.get('/:id',
     validatorHandler(getUserSchema, 'params'),
     async(req, res) =>{
     try{
-        const items = await service.getFinanzas(req)
+        if (req.query.month !== undefined){
+        const limit = parseInt(req.query.limit)
+        const skip = parseInt(req.query.skip)
+        const month = parseInt(req.query.month)
+        const items = await service.getFinanzas(req, skip, limit, month)
         res.json(items)
+        }
+    }
+    catch(err){
+        next(err)
+    }
+})
+router.get('/all/:id',
+    validatorHandler(getUserSchema, 'params'),
+    async(req, res) =>{
+    try{
+
+        const items = await service.getAllFinanzas(req)
+        res.json(items)
+        
     }
     catch(err){
         next(err)

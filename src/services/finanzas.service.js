@@ -1,10 +1,28 @@
 const boom = require('@hapi/boom')
 const Finanza = require('../models/finanza')
 
+
+
 class finanzaService {
 
-    async getFinanzas(req) {
-        const items = await Finanza.find({user:req.params.id}).sort({createdAt: "descending"})
+    async getFinanzas(req, skip, limit, month) {
+        let start = new Date()
+        start.setFullYear(2022, month-1, 0)
+
+        let end = new Date()
+        end.setFullYear(2022, month, 0)
+        
+        if (skip < 0 || limit < 0) {
+            skip = 0
+            limit = 15
+        }
+        const items = await Finanza.find({user:req.params.id, date: {$gte: start, $lte: end}}).skip(skip).limit(limit).sort({date: "descending"})
+        return(items)
+    }
+
+    async getAllFinanzas(req) {
+
+        const items = await Finanza.find({user:req.params.id})
         return(items)
     }
 

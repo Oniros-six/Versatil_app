@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import {AppContext} from '../../Provider'
+import { AppContext } from '../../Provider'
 import axios from 'axios'
 import Navbar from "../../components/Navbar/Navbar";
 import TableFinanzas from "../../components/Tables/TableFinanzas"
@@ -21,56 +21,127 @@ const Finanzas = () => {
     };
 
     let date = new Date()
+    let mesActual = date.getMonth() + 1
 
-    const getMonthName = (number) => {
-        return new Date('1999-' + number + '-15').toLocaleString('es-ES', { month: 'long' })
-    }
+     const getMonthNumber = (mes) => {
+        if (mes === "Enero") {
+         return '01'
+        } else if (mes === "Febrero") {
+         return '02'
+        } else if (mes === "Marzo") {
+         return '03'
+        } else if (mes === "Abril") {
+         return '04'
+        } else if (mes === "Mayo") {
+         return '05'
+        } else if (mes === "Junio") {
+         return '06'
+        } else if (mes === "Julio") {
+         return '07'
+        } else if (mes === "Agosto") {
+         return '08'
+        } else if (mes === "Septiembre") {
+         return '09'
+        } else if (mes === "Octubre") {
+         return '10'
+        } else if (mes === "Noviembre") {
+         return '11'
+        } else if (mes === "Diciembre") {
+         return '12'
+        }
+     }
 
-    const capitalizeFirstLetter = (str) => {
-        return str.charAt(0).toUpperCase() + str.slice(1);
-    }
-
-    let mesActual = capitalizeFirstLetter(getMonthName(date.getMonth() + 1))
-
-    //VARIABLES
-    let actualizar = false
-    const user = "631ba9569f4fc6d8c5dc8171"
-
-    // Hooks
-    const [mes, setMes] = useState('')
-    const [salario, setSalario] = useState(0)
-    const [listaItems, setListaItems] = useState([]);
-    const [newItem, setNewItem] = useState(itemInit)
-    const [openModal, setOpenModal] = useState(false)
-    const [isEdit, setIsEdit] = useState(false)
-    const [ingreso, setIngreso] = useState(false)
-
-    useEffect(() => {
-        getItems()
-        getSalario()
-    }, [actualizar])
-
-    const normalizar = (name) => {
+     const normalizar = (name) => {
         const nombre = name.trim().charAt(0).toUpperCase() + name.slice(1);
         return nombre;
     }
 
+    const nextPage = () => {
+        if(listaItems.length >= limit){
+            setSkip(skip + 15)
+            setCounter(counter + 1)
+        }
+    }
+
+    const previousPage = () => {
+        if (skip !== 0) {
+            setSkip(skip - 15)
+            setCounter(counter - 1)
+        }
+        
+    }
+
+    const cambiarOrden = () => {
+        const order = {
+            orderAsc: 'ascending',
+            orderDes: 'descending'
+        }
+    }
+
+    //VARIABLES
+    const user = "631ba9569f4fc6d8c5dc8171"
+
+    // Hooks
+    const [mes, setMes] = useState(mesActual)
+    const [salario, setSalario] = useState(0)
+    const [listaItems, setListaItems] = useState([]);
+    const [allItems, setAllItems] = useState([]);
+    const [newItem, setNewItem] = useState(itemInit)
+    const [openModal, setOpenModal] = useState(false)
+    const [isEdit, setIsEdit] = useState(false)
+    const [ingreso, setIngreso] = useState(false)
+    const [limit, setLimit] = useState(15);
+    const [skip, setSkip] = useState(0);
+    const [counter, setCounter] = useState(1);
+    const [actualizar, setActualizar] = useState(false)
+
+
+
+    useEffect(() => {
+        
+        if (mes === undefined) {
+           setMes(mesActual)
+        } else {
+            setMes(getMonthNumber(month))
+        }            
+
+        getItems()
+        getAllItems()
+        getSalario()
+       
+    }, [month, actualizar, skip])
+
+
     // ABML
 
     const getItems = async () => {
-        try {
-            if (mes === '') {
-                setMes(mesActual)
-            }
-            actualizar = !actualizar
-            const res = await axios.get(`api/finanzas/${user}`)
-            setListaItems(res.data)
+        try {   
+            if (mes === undefined) {
+                const res = await axios.get(`api/finanzas/${user}?skip=${skip}&limit=${limit}&month=${mesActual}`)
+                setListaItems(res.data)
+
+            } else {
+                const res = await axios.get(`api/finanzas/${user}?skip=${skip}&limit=${limit}&month=${mes}`)
+                setListaItems(res.data)
+            }            
         }
 
         catch (error) {
             console.log(error);
         }
     }
+    const getAllItems = async () => {
+        try {
+            const res = await axios.get(`api/finanzas/all/${user}`)
+            setAllItems(res.data)
+        }
+
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+
     const getSalario = async () => {
         try {
             const res = await axios.get(`api/users/${user}`)
@@ -90,7 +161,7 @@ const Finanzas = () => {
             date: newItem.date,
             user_id: user
         }
-        
+
 
         try {
             const res = await axios.post(`api/finanzas/`, { item })
@@ -109,7 +180,7 @@ const Finanzas = () => {
             description: newItem.description,
             date: newItem.date,
             user_id: user
-        }   
+        }
         try {
             const res = await axios.post(`api/finanzas/ingreso`, { item })
             getItems()
@@ -118,7 +189,7 @@ const Finanzas = () => {
         }
         handleCloseModal();
     }
-    
+
     const handleEdit = (editData, event) => {
         event.preventDefault();
         handleOpenModal(true, editData);
@@ -161,13 +232,9 @@ const Finanzas = () => {
         }
     }
 
-    const changeMonth = (mes) => {
-        setMes(mes)
-        getItems()
-    };
 
     // MODAL
-    
+
     const openModalIngreso = () => {
         setIngreso(true)
         setOpenModal(true)
@@ -187,7 +254,7 @@ const Finanzas = () => {
             });
         }
         setOpenModal(true);
-        
+
     };
 
     const handleCloseModal = () => {
@@ -205,10 +272,10 @@ const Finanzas = () => {
 
     const handleSubmitForm = (e, form, isEdit, ingreso) => {
         e.preventDefault();
-        (form.checkValidity() && isEdit) ? putItem() : (ingreso) ? postNuevoIngreso(): postItem();
+        (form.checkValidity() && isEdit) ? putItem() : (ingreso) ? postNuevoIngreso() : postItem();
     };
 
-    
+
 
     return (
         <>
@@ -216,22 +283,33 @@ const Finanzas = () => {
             <div className="tables-containers">
 
                 <TableFinanzas
-                    change = {changeMonth}
-                    mes = {mes}
-                    month={month}
+                    mes={mes}
                     togglePaid={togglePaid}
                     handleEdit={handleEdit}
                     handleDelete={handleDelete}
                     listaItems={listaItems}
                 />
-                <div className="buttons-container">
-                   <Boton clases="boton rounded-full text-md py-1 px-2 w-9 h-9 m-4" icon="fa fa-cash-register"  onClick={() => handleOpenModal()} />                     
-                   <Boton clases="boton rounded-full text-md py-1 px-2 w-9 h-9 m-4" icon="fas fa-hand-holding-usd"  onClick={() => openModalIngreso()} />      
+                <div className="flex flex-col gap-2">
+                    <div className="buttons-container">
+                        <Boton clases="boton rounded-full text-md py-1 px-2 w-9 h-9 m-4" icon="fa fa-cash-register" onClick={() => handleOpenModal()} />
+                        <Boton clases="boton rounded-full text-md py-1 px-2 w-9 h-9 m-4" icon="fas fa-hand-holding-usd" onClick={() => openModalIngreso()} />
+                    </div>
+                   <div  className="buttons-container  flex-col text-center">
+                        <h4 className="titulo-h4">Paginas</h4>
+                        <div className="buttons-container flex-row border-none">
+                            <Boton clases="boton rounded-full text-md py-1 px-2 w-9 h-9 m-4" icon="fas fa-long-arrow-alt-left" onClick={() => previousPage()} />
+                            <Boton clases="boton rounded-md text-md py-1 px-2 w-9 h-9 m-4" nombre={counter}/>
+                            <Boton clases="boton rounded-full text-md py-1 px-2 w-9 h-9 m-4" icon="fa fa-long-arrow-alt-right" onClick={() => nextPage()} />
+
+                        </div>
+                   </div>
                 </div>
                 <TableResumen
-                    listaItems={listaItems}
+                    setActualizar = {setActualizar}
+                    actualizar = {actualizar}
+                    listaItems={allItems}
                     salario={salario}
-                    mes = {mes}
+                    mes={mes}
                 />
 
             </div>
@@ -249,7 +327,7 @@ const Finanzas = () => {
                     handleChanges={handleChangeInputForm}
                     newItem={newItem}
                     handleSubmit={handleSubmitForm}
-                    ingreso = {ingreso}
+                    ingreso={ingreso}
                 />
 
             </ModalFinanzas>
@@ -258,3 +336,4 @@ const Finanzas = () => {
     )
 }
 export default Finanzas;
+

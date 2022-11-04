@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme')
 module.exports = {
   content: [
     "./public/index.html",
@@ -7,12 +8,12 @@ module.exports = {
   ],
   theme: {
     extend: {
-      spacing: {
-        '36em': '36em',
-      },
       colors: {
         'ambar': '#e67700',
-      },
+      },	
+      fontFamily: {
+        Roboto: ["Roboto", "sans-serif"],
+      },		            
     },
   },
   plugins: [],

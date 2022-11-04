@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import NavBar from '../../components/Navbar/Navbar'
 import Datos from '../../components/Forms/Datos'
-import axios from 'axios'
+import Boton from '../../components/Buttons/Boton'
 
 const Perfil = () => {
 
@@ -11,9 +11,13 @@ const Perfil = () => {
       <div className='flex flex-col items-center w-full h-full border-x-4 border-double border-red-800 rounded-full p-3 mt-6 '>
         <div className='flex flex-col items-center w-8/12 p-4 border-solid border-2 border-ambar rounded-md bg-slate-500 ' >
           <div className='bg-black w-8/12 p-4 rounded-md'>
-            <h2 className='titulo-h2 text-ambar'>
-              Datos
-            </h2>
+
+            <div className='flex flex-row justify-between align-middle ml-4'>
+              <h2 className='titulo-h2 text-ambar'>
+                Datos
+              </h2>
+                <Boton clases="boton-warning" icon="far fa-edit" />
+            </div>
             <hr className='separador w-12/12 m-2 ml-6 ' />
 
             <div className='separadorVertical w-12/12 p-4'>
