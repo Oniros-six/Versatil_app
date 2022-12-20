@@ -146,15 +146,16 @@ const Categorias = (props) => {
                             <Boton  nombre={value.name} onClick={() => setIdCat(value._id)}/>
                         </td>
                         <td className="accion-cat">
-                        <div onClick={()=> mostrarMenu(value)}>
-                                <h1 className={`${show === true ? 'hidden' : 'tres-puntos'}`}>. . .</h1>
-                                {show && value._id === id? 
+                        <div onClick={()=> mostrarMenu(value)} onMouseLeave={() => setTimeout(() => {setShow(false)}, 500)}>
+                                <h1 className={`${show === true && value._id === id ? 'hidden' : 'tres-puntos'}`}><i className="fas fa-caret-down"></i></h1>
+                                {show && value._id === id? <>
                                     <MenuCategorias 
-                                        value={value}
-                                        handleEdit={handleEdit}
-                                        handleDelete={handleDelete}
-                                        /> 
-                                : 
+                                    value={value}
+                                    handleEdit={handleEdit}
+                                    handleDelete={handleDelete}
+                                    /> 
+                                </>
+                                    : 
                                     <></>}
                             </div>
                         </td>

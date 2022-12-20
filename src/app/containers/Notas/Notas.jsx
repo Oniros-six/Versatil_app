@@ -17,7 +17,7 @@ let notaInit = {
     category: ""
 };
 
-const Notas = ({cat}) => {
+const Notas = ({ cat }) => {
     // Hooks de Estado
     const [listaNotas, setListaNotas] = useState([]);
     const [notasData, setNotasData] = useState(notaInit);
@@ -29,10 +29,10 @@ const Notas = ({cat}) => {
     const [id, setId] = useState()
 
     useEffect(() => {
-        if (typeof(cat) !== typeof("")) {
-          } else {
-            getNotas(); 
-          }
+        if (typeof (cat) !== typeof ("")) {
+        } else {
+            getNotas();
+        }
     }, [cat]);
 
     const normalizar = (note) => {
@@ -45,7 +45,7 @@ const Notas = ({cat}) => {
         try {
             const notas = await axios.get(`api/notes/${cat}`);
             setListaNotas(notas.data);
-            } catch (error) {
+        } catch (error) {
             console.log(error);
         }
     };
@@ -71,7 +71,7 @@ const Notas = ({cat}) => {
         try {
             const data = await axios.post(`api/notes/`, { notasData });
             getNotas()
-            
+
         } catch (error) {
             console.log(error);
         }
@@ -108,9 +108,9 @@ const Notas = ({cat}) => {
     const mostrarMenu = (value) => {
         setShow(!show)
         setId(value._id)
-    } 
+    }
     // Modal
-    
+
     const handleOpenModal = (isEdit = false, toEdit = null) => {
         setIsEdit(isEdit);
         if (isEdit) {
@@ -134,7 +134,7 @@ const Notas = ({cat}) => {
     // form
     const handleChangeInputForm = (property) => {
         property.target.value === '' ? setHasErrorInForm(true) : setHasErrorInForm(false);
-        setNotasData({  ...notasData, [property.target.name]:property.target.value });
+        setNotasData({ ...notasData, [property.target.name]: property.target.value });
     };
 
     const handleSubmitForm = (e, form, isEdit) => {
@@ -146,39 +146,39 @@ const Notas = ({cat}) => {
 
     return (
         <>
-             <div className="buttons-container">
-                <Boton clases="boton rounded-md text-md py-1 px-2 w-16" secondicon="fas fa-arrow-right" icon="fa fa-plus mr-1" onClick={() => handleOpenModal()} /> 
+            <div className="buttons-container">
+                <Boton clases="boton rounded-md text-md py-1 px-2 w-16" secondicon="fas fa-arrow-right" icon="fa fa-plus mr-1" onClick={() => handleOpenModal()} />
             </div>
 
             <Table zona={"nota"} lista={listaNotas} >
-               
+
                 {Object.entries(listaNotas).map(([key, value]) => (
-                    
-                    <tr key={value._id} 
-                    className="table-tr hover:bg-slate-300">
-                        <td className={`${value.status !== false ? 'ready table-td nota' : ' table-td nota'}`}>                            
+
+                    <tr key={value._id}
+                        className="table-tr hover:bg-slate-300">
+                        <td className={`${value.status !== false ? 'ready table-td nota' : ' table-td nota'}`}>
                             {value.note}
                         </td>
                         <td className={`${value.status !== false ? 'ready table-td fecha' : ' table-td fecha'}`}>
-                            {value.date.slice(0,10)}
+                            {value.date.slice(0, 10)}
                         </td>
                         <td className="accion">
-                            <div onClick={()=> mostrarMenu(value)}>
-                                <h1  className={`${show === true ? 'hidden' : 'tres-puntos'}`} >. . .</h1>
-                                {show && value._id === id? 
-                                    <MenuNotas 
+                            <div onClick={() => mostrarMenu(value)} onMouseLeave={() => setTimeout(() => {setShow(false)}, 500)}>
+                                <h1 className={`${show === true && value._id === id ? 'hidden' : 'tres-puntos'}`} ><i className="fas fa-caret-down"></i></h1>
+                                {show && value._id === id ?
+                                    <MenuNotas
                                         value={value}
                                         toggleNota={toggleNota}
                                         handleEdit={handleEdit}
                                         handleDelete={handleDelete}
-                                        />
-                                : 
+                                    />
+                                    :
                                     <></>}
                             </div>
                         </td>
                     </tr>
 
-              ))}
+                ))}
             </Table>
 
             <Modal
@@ -196,11 +196,11 @@ const Notas = ({cat}) => {
                     handleSubmit={handleSubmitForm}
                     errorMsg={errorMsg}
                     normalizar={normalizar}
-                    condicional = {true}
+                    condicional={true}
                 />
 
-            </Modal> 
-        
+            </Modal>
+
         </>
     )
 }
