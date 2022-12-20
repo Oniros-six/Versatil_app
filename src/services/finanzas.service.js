@@ -5,7 +5,7 @@ const Finanza = require('../models/finanza')
 
 class finanzaService {
 
-    async getFinanzas(req, skip, limit, month) {
+    async getFinanzas(req, skip, limit, month, order) {
         let start = new Date()
         start.setFullYear(2022, month-1, 0)
 
@@ -16,8 +16,9 @@ class finanzaService {
             skip = 0
             limit = 15
         }
-        const items = await Finanza.find({user:req.params.id, date: {$gte: start, $lte: end}}).skip(skip).limit(limit).sort({date: "descending"})
-        return(items)
+            const items = await Finanza.find({user:req.params.id, date: {$gte: start, $lte: end}}).skip(skip).limit(limit).sort({date: order})
+            return(items)
+        
     }
 
     async getAllFinanzas(req) {

@@ -16,7 +16,8 @@ router.get('/:id',
         const limit = parseInt(req.query.limit)
         const skip = parseInt(req.query.skip)
         const month = parseInt(req.query.month)
-        const items = await service.getFinanzas(req, skip, limit, month)
+        const order = req.query.order
+        const items = await service.getFinanzas(req, skip, limit, month, order)
         res.json(items)
         }
     }

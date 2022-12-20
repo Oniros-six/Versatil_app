@@ -1,9 +1,11 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import MenuFinanzas from "../Menu/MenuFinanzas"
 
 
+
 const TableFinanzas = (props) => {
-    const {listaItems, togglePaid, handleEdit, handleDelete, mes } = props;
+    const {listaItems, togglePaid, handleEdit, handleDelete, 
+            mes, alternarOrden } = props;
     const [show, setShow] = useState(false)
     const [id, setId] = useState()
 
@@ -12,15 +14,26 @@ const TableFinanzas = (props) => {
         setId(value._id)
     } 
 
-
     return (
             <table className="table w-8/12">
                 <thead className="table-thead">
                     <tr className="table-tr">
-                        <th className="table-th item">Item</th>
+                        <th className="table-th item">
+                            <button onClick= {(event) => alternarOrden(event, 'Item')}>
+                                Item
+                            </button>
+                        </th>
                         <th className="table-th descripcion">Descripción</th>
-                        <th className="table-th subtotal">SubTotal</th>
-                        <th className="table-th fecha">Fecha</th>
+                        <th className="table-th subtotal">
+                            <button onClick={(event) => alternarOrden(event, 'Subtotal')}>
+                                SubTotal
+                            </button>
+                        </th>
+                        <th className="table-th fecha">
+                            <button onClick={(event) => alternarOrden(event, 'Date')}>
+                                Fecha
+                            </button>
+                        </th>
                         <th className="table-th acciones ">Acciones</th>
                     </tr>
                 </thead>

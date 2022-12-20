@@ -6,7 +6,7 @@ const MenuNotas = (props) => {
 
     return (
         <div className = 'menuDropDown' >
-            <ul>
+            <ul className='flex'>
                 <li className='dropDownLink'>
                     <Boton clases={`${value.status !== false ? 'boton-success' : 'boton-toggle'}`} icon={`${value.status !== false ? 'fa-solid fa-rotate-left' : 'fa-solid fa-check-double'}`} onClick={(event) => toggleNota(value._id, event)} />    
                 </li>

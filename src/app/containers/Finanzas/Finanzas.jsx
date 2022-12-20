@@ -7,7 +7,7 @@ import TableResumen from "../../components/Tables/TableResumen";
 import ModalFinanzas from "../../components/Modals/ModalFinanzas";
 import FormFinanzas from "../../components/Forms/FormFinanzas";
 import Boton from "../../components/Buttons/Boton";
-
+// 
 const Finanzas = () => {
     const [month, setMonth] = useContext(AppContext);
 
@@ -50,7 +50,7 @@ const Finanzas = () => {
          return '12'
         }
      }
-
+    
      const normalizar = (name) => {
         const nombre = name.trim().charAt(0).toUpperCase() + name.slice(1);
         return nombre;
@@ -71,12 +71,14 @@ const Finanzas = () => {
         
     }
 
-    const cambiarOrden = () => {
-        const order = {
-            orderAsc: 'ascending',
-            orderDes: 'descending'
-        }
-    }
+    const alternarOrden = (e,col) => {
+        e.preventDefault()
+        ascDesc ? setOrder('descending') : setOrder('ascending')
+        console.log(ascDesc, order)
+        setAscDesc(!ascDesc)
+    } 
+
+
 
     //VARIABLES
     const user = "631ba9569f4fc6d8c5dc8171"
@@ -94,13 +96,12 @@ const Finanzas = () => {
     const [skip, setSkip] = useState(0);
     const [counter, setCounter] = useState(1);
     const [actualizar, setActualizar] = useState(false)
-
-
+    const [order, setOrder] = useState('descending')
+    const [ascDesc, setAscDesc] = useState(false)
 
     useEffect(() => {
-        
         if (mes === undefined) {
-           setMes(mesActual)
+            setMes(mesActual)
         } else {
             setMes(getMonthNumber(month))
         }            
@@ -117,11 +118,11 @@ const Finanzas = () => {
     const getItems = async () => {
         try {   
             if (mes === undefined) {
-                const res = await axios.get(`api/finanzas/${user}?skip=${skip}&limit=${limit}&month=${mesActual}`)
+                const res = await axios.get(`api/finanzas/${user}?skip=${skip}&limit=${limit}&month=${mesActual}&order=${order}`)
                 setListaItems(res.data)
 
             } else {
-                const res = await axios.get(`api/finanzas/${user}?skip=${skip}&limit=${limit}&month=${mes}`)
+                const res = await axios.get(`api/finanzas/${user}?skip=${skip}&limit=${limit}&month=${mes}&order=${order}`)
                 setListaItems(res.data)
             }            
         }
@@ -140,7 +141,6 @@ const Finanzas = () => {
             console.log(error);
         }
     }
-
 
     const getSalario = async () => {
         try {
@@ -210,7 +210,7 @@ const Finanzas = () => {
         if (window.confirm('Estas seguro?')) {
             await deleteItem(id);
         }
-    };
+    }
 
     const deleteItem = async (id) => {
         try {
@@ -288,6 +288,8 @@ const Finanzas = () => {
                     handleEdit={handleEdit}
                     handleDelete={handleDelete}
                     listaItems={listaItems}
+                    
+                    alternarOrden={alternarOrden}
                 />
                 <div className="flex flex-col gap-2">
                     <div className="buttons-container">

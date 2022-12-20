@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import {AppContext} from '../../Provider'
 import Boton from "../Buttons/Boton";
 
+// INTENTANDO QUE SE PUEDA CAMBIAR EL ORDENAMIENTO SEGUN LOS DIFERENTES TIPOS, FECHA, GASTO O ITEM
 
 const TableResumen = (props) => {
     const { listaItems, salario, mes, setActualizar, actualizar} = props;
