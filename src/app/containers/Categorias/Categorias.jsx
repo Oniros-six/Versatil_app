@@ -147,7 +147,7 @@ const Categorias = (props) => {
                         </td>
                         <td className="accion-cat">
                         <div onClick={()=> mostrarMenu(value)}>
-                                <h1 className="titulo-h3 text-ambar hover:cursor-pointer">. . .</h1>
+                                <h1 className={`${show === true ? 'hidden' : 'tres-puntos'}`}>. . .</h1>
                                 {show && value._id === id? 
                                     <MenuCategorias 
                                         value={value}

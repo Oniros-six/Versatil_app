@@ -5,7 +5,7 @@ const MenuCategorias = (props) => {
     const {value, handleEdit, handleDelete} = props;
     return (
         <div className = 'menuDropDown' >
-            <ul>
+            <ul className="flex">
                 <li className='dropDownLink'>
                     <Boton clases="boton-warning" icon="far fa-edit" onClick={(event) => handleEdit(value, event)} />  
                 </li>

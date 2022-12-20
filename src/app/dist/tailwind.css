@@ -123,9 +123,13 @@
         @apply text-ambar
     }
 
+    .tres-puntos {
+        @apply titulo-h3 text-ambar hover:cursor-pointer 
+    }
+
     /* Notas */
     .decoration{
-        @apply font-bold underline decoration-emerald-500 decoration-double underline-offset-1 
+        @apply font-bold
     }
 
     .table-notas{

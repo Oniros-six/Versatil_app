@@ -164,7 +164,7 @@ const Notas = ({cat}) => {
                         </td>
                         <td className="accion">
                             <div onClick={()=> mostrarMenu(value)}>
-                                <h1  className={`${show === true ? 'titulo-h3 text-ambar hover:cursor-pointer hidden' : 'titulo-h3 text-ambar hover:cursor-pointer '}`} >. . .</h1>
+                                <h1  className={`${show === true ? 'hidden' : 'tres-puntos'}`} >. . .</h1>
                                 {show && value._id === id? 
                                     <MenuNotas 
                                         value={value}

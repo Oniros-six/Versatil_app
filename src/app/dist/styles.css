@@ -1009,16 +1009,49 @@ video {
   --tw-text-opacity: 1;
   color: rgb(230 119 0 / var(--tw-text-opacity));
 }
+.tres-puntos {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 700;
+}
+@media (min-width: 640px) {
+
+  .tres-puntos {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+@media (min-width: 768px) {
+
+  .tres-puntos {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+}
+@media (min-width: 1024px) {
+
+  .tres-puntos {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+}
+@media (min-width: 1280px) {
+
+  .tres-puntos {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+.tres-puntos {
+  --tw-text-opacity: 1;
+  color: rgb(230 119 0 / var(--tw-text-opacity));
+}
+.tres-puntos:hover {
+  cursor: pointer;
+}
 /* Notas */
 .decoration {
   font-weight: 700;
-  -webkit-text-decoration-line: underline;
-          text-decoration-line: underline;
-  -webkit-text-decoration-color: #10b981;
-          text-decoration-color: #10b981;
-  -webkit-text-decoration-style: double;
-          text-decoration-style: double;
-  text-underline-offset: 1px;
 }
 .table-notas {
   margin: 0.5rem;
